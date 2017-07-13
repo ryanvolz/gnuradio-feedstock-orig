@@ -1,0 +1,96 @@
+{% set version = "3.7.11" %}
+
+package:
+  name: gnuradio
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/gnuradio/gnuradio.git
+  git_rev: v{{ version }}
+
+build:
+  number: 0
+  skip: True  # [win]
+  detect_binary_files_with_prefix: True
+
+requirements:
+  build:
+    - toolchain
+    - git
+    - cmake >=3.2
+    - boost 1.62.*
+    - libusb >=1
+    - fftw
+    - pkg-config
+    - cheetah
+    - log4cpp
+    - cppunit
+  # python wrappers
+    - python >=2.7,<3
+    - swig
+    - numpy
+  # wavelet
+    - gsl
+  # qtgui
+    - pyqt >=4,<5
+    - qwt
+  # wxgui
+    - wxpython
+    - lxml
+  # audio
+    - portaudio
+  # zeromq
+    - zeromq
+    - cppzmq
+  # USRP hardware driver
+    - uhd
+  # docs
+    - doxygen
+    - sphinx
+
+  run:
+    - boost 1.62.*
+    - fftw
+    - python >=2.7,<3
+    - numpy
+    - cheetah
+    - log4cpp
+    - gsl
+    - pyqt
+    - qwt
+    - wxpython
+    - lxml
+    - portaudio
+    - zeromq
+    - uhd
+
+test:
+  imports:
+    - gnuradio.gr
+
+about:
+  home: http://gnuradio.org/
+  license: GPL-3.0
+  license_file: COPYING
+  summary: 'The free and open software radio ecosystem'
+  description: |
+    GNU Radio is a free software development toolkit that provides the signal
+    processing runtime and processing blocks to implement software radios using
+    readily-available, low-cost external RF hardware and commodity processors.
+    It is widely used in hobbyist, academic and commercial environments to
+    support wireless communications research as well as to implement real-world
+    radio systems.
+
+    GNU Radio applications are primarily written using the Python programming
+    language, while the supplied, performance-critical signal processing path
+    is implemented in C++ using processor floating point extensions where
+    available. Thus, the developer is able to implement real-time, high-
+    throughput radio systems in a simple-to-use, rapid-application-development
+    environment.
+
+  doc_url: http://gnuradio.org/doc/doxygen/
+  dev_url: http://gnuradio.org/redmine/projects/gnuradio/wiki/Development
+
+extra:
+  recipe-maintainers:
+    - ryanvolz

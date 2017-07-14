@@ -56,7 +56,7 @@ requirements:
     - cheetah
     - log4cpp
     - gsl
-    - pyqt
+    - pyqt >=4,<5
     - qwt
     - wxpython
     - lxml

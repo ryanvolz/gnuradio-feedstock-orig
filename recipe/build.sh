@@ -14,5 +14,5 @@ cmake ../ \
     -DENABLE_GR_FCD=OFF \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX
-make
+make -j4
 make install

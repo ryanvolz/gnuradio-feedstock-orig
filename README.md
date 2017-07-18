@@ -70,7 +70,7 @@ opportunity to confirm that the changes result in a successful build. Once
 merged, the recipe will be re-built and uploaded automatically to the
 `ryanvolz` channel, whereupon the built conda packages will be available for
 everybody to install and use from the `ryanvolz` channel.
-Note that all branches in the conda-forge/gnuradio-feedstock are
+Note that all branches in the ryanvolz/gnuradio-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
 on branches in forks and branches in the main repository should only be used to
 build distinct package versions.

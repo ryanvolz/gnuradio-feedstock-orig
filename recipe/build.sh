@@ -52,5 +52,5 @@ cmake ../ \
     -DENABLE_TESTING=ON \
     -DENABLE_VOLK=ON \
     -DENABLE_INTERNAL_VOLK=ON
-make -j4
+make -j${CPU_COUNT}
 make install

@@ -13,6 +13,7 @@ cmake ../ \
     -DSWIG_EXECUTABLE=$PREFIX/bin/swig \
     -DENABLE_GR_FCD=OFF \
     -DCMAKE_PREFIX_PATH=$PREFIX \
-    -DCMAKE_INSTALL_PREFIX=$PREFIX
+    -DCMAKE_INSTALL_PREFIX=$PREFIX \
+    -DLIB_SUFFIX=""
 make -j4
 make install

@@ -16,14 +16,15 @@ cd build
 #   GR_COMEDI needs comedi
 #   GR_CTRLPORT builds partially but needs thrift for full support
 #   GR_FCD has libiconv linker error
-#   GR_GRC needs pygtk
 #   GR_VIDEO_SDL needs sdl
+#   GRC needs pygtk
 cmake ../ \
     -DSWIG_EXECUTABLE=$PREFIX/bin/swig \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DLIB_SUFFIX="" \
     -DENABLE_DOXYGEN=OFF \
+    -DENABLE_GNURADIO_RUNTIME=ON \
     -DENABLE_GR_ANALOG=ON \
     -DENABLE_GR_ATSC=ON \
     -DENABLE_GR_AUDIO=ON \
@@ -37,11 +38,9 @@ cmake ../ \
     -DENABLE_GR_FEC=ON \
     -DENABLE_GR_FFT=ON \
     -DENABLE_GR_FILTER=ON \
-    -DENABLE_GR_GRC=OFF \
     -DENABLE_GR_NOAA=ON \
     -DENABLE_GR_PAGER=ON \
     -DENABLE_GR_QTGUI=ON \
-    -DENABLE_GR_RUNTIME=ON \
     -DENABLE_GR_TRELLIS=ON \
     -DENABLE_GR_UHD=ON \
     -DENABLE_GR_UTILS=ON \
@@ -50,6 +49,7 @@ cmake ../ \
     -DENABLE_GR_WAVELET=ON \
     -DENABLE_GR_WXGUI=ON \
     -DENABLE_GR_ZEROMQ=ON \
+    -DENABLE_GRC=OFF \
     -DENABLE_PYTHON=ON \
     -DENABLE_SPHINX=OFF \
     -DENABLE_TESTING=OFF \

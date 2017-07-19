@@ -12,8 +12,11 @@ dependencies:
   # just to pull each time. #rollondockercaching
   override:
     - docker pull condaforge/linux-anvil
+    - ./ci_support/run_docker_build.sh || touch ./build_failed
+  cache_directories:
+    - "./build_artefacts/.ccache"
 
 test:
   override:
     # Run, test and (if we have a BINSTAR_TOKEN) upload the distributions.
-    - ./ci_support/run_docker_build.sh
+    - if test -f ./build_failed; then exit 1; fi

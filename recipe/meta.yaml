@@ -15,7 +15,7 @@ build:
 
 requirements:
   build:
-    - toolchain
+    - ccache-toolchain
     - git
     - cmake >=3.2
     - boost 1.64.*

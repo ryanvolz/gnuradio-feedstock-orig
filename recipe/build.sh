@@ -56,5 +56,23 @@ cmake \
     -DENABLE_VOLK=ON \
     -DENABLE_INTERNAL_VOLK=ON \
     ..
+
+if [ $(uname) == Linux ]; then
+    # CircleCI builds all packages on the same build and has a much larger
+    # timeout
+    TIMEOUT=5400
+else
+    TIMEOUT=2220
+fi
+bash -c "#!/bin/sh
+sleep $TIMEOUT
+ccache -s
+killall ccache
+"&
+KILLER_PID=$!
+
 make -j${CPU_COUNT}
 make install
+
+kill $KILLER_PID || echo "Script already exited"
+ccache -s

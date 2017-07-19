@@ -18,7 +18,7 @@ cd build
 #   GR_FCD has libiconv linker error
 #   GR_VIDEO_SDL needs sdl
 #   GRC needs pygtk
-cmake ../ \
+cmake \
     -DSWIG_EXECUTABLE=$PREFIX/bin/swig \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
@@ -54,6 +54,7 @@ cmake ../ \
     -DENABLE_SPHINX=OFF \
     -DENABLE_TESTING=OFF \
     -DENABLE_VOLK=ON \
-    -DENABLE_INTERNAL_VOLK=ON
+    -DENABLE_INTERNAL_VOLK=ON \
+    ..
 make -j${CPU_COUNT}
 make install

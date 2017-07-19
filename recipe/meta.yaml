@@ -9,7 +9,7 @@ source:
   sha256: 87d9ba3183858efdbb237add3f9de40f7d65f25e16904a9bc8d764a7287252d4
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win]
   detect_binary_files_with_prefix: True
 
@@ -44,9 +44,6 @@ requirements:
     - cppzmq
   # USRP hardware driver
     - uhd
-  # docs
-    - doxygen
-    - sphinx
 
   run:
     - boost 1.64.*
@@ -62,11 +59,32 @@ requirements:
     - lxml
     - portaudio
     - zeromq
+    - pyzmq
     - uhd
 
 test:
   imports:
+    - gnuradio.analog
+    - gnuradio.atsc
+    - gnuradio.audio
+    - gnuradio.blocks
+    - gnuradio.channels
+    - gnuradio.digital
+    - gnuradio.dtv
+    - gnuradio.fec
+    - gnuradio.fft
+    - gnuradio.filter
     - gnuradio.gr
+    - gnuradio.noaa
+    - gnuradio.pager
+    - gnuradio.qtgui
+    - gnuradio.trellis
+    - gnuradio.uhd
+    - gnuradio.vocoder
+    - gnuradio.wavelet
+    - gnuradio.wxgui
+    - gnuradio.zeromq
+    - pmt
 
 about:
   home: http://gnuradio.org/

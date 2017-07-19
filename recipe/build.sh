@@ -11,7 +11,10 @@ mkdir build
 cd build
 # enable gnuradio components explicitly so we get build error when unsatisfied
 # the following are disabled:
+#   DOXYGEN/SPHINX because we don't need docs in the conda package
+#   TESTING because we don't intend to run the unit tests, just import test
 #   GR_COMEDI needs comedi
+#   GR_CTRLPORT builds partially but needs thrift for full support
 #   GR_FCD has libiconv linker error
 #   GR_GRC needs pygtk
 #   GR_VIDEO_SDL needs sdl
@@ -20,14 +23,14 @@ cmake ../ \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DLIB_SUFFIX="" \
-    -DENABLE_DOXYGEN=ON \
+    -DENABLE_DOXYGEN=OFF \
     -DENABLE_GR_ANALOG=ON \
     -DENABLE_GR_ATSC=ON \
     -DENABLE_GR_AUDIO=ON \
     -DENABLE_GR_BLOCKS=ON \
     -DENABLE_GR_COMEDI=OFF \
     -DENABLE_GR_CHANNELS=ON \
-    -DENABLE_GR_CTRLPORT=ON \
+    -DENABLE_GR_CTRLPORT=OFF \
     -DENABLE_GR_DIGITAL=ON \
     -DENABLE_GR_DTV=ON \
     -DENABLE_GR_FCD=OFF \
@@ -48,8 +51,8 @@ cmake ../ \
     -DENABLE_GR_WXGUI=ON \
     -DENABLE_GR_ZEROMQ=ON \
     -DENABLE_PYTHON=ON \
-    -DENABLE_SPHINX=ON \
-    -DENABLE_TESTING=ON \
+    -DENABLE_SPHINX=OFF \
+    -DENABLE_TESTING=OFF \
     -DENABLE_VOLK=ON \
     -DENABLE_INTERNAL_VOLK=ON
 make -j${CPU_COUNT}

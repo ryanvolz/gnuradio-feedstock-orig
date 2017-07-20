@@ -7,6 +7,20 @@ CXXFLAGS="${CXXFLAGS} -D_GLIBCXX_USE_CXX11_ABI=0"
 # remove gnuradio's FindGSL.cmake to use cmake's version
 rm -f cmake/Modules/FindGSL.cmake
 
+if [ $(uname) == Linux ]; then
+    # CircleCI builds all packages on the same build and has a much larger
+    # timeout
+    TIMEOUT=5400
+else
+    TIMEOUT=2220
+fi
+bash -c "#!/bin/sh
+sleep $TIMEOUT
+ccache -s
+killall ccache
+"&
+KILLER_PID=$!
+
 mkdir build
 cd build
 # enable gnuradio components explicitly so we get build error when unsatisfied
@@ -56,21 +70,6 @@ cmake \
     -DENABLE_VOLK=ON \
     -DENABLE_INTERNAL_VOLK=ON \
     ..
-
-if [ $(uname) == Linux ]; then
-    # CircleCI builds all packages on the same build and has a much larger
-    # timeout
-    TIMEOUT=5400
-else
-    TIMEOUT=2220
-fi
-bash -c "#!/bin/sh
-sleep $TIMEOUT
-ccache -s
-killall ccache
-"&
-KILLER_PID=$!
-
 make -j${CPU_COUNT}
 make install
 

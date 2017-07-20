@@ -18,6 +18,7 @@ bash -c "#!/bin/sh
 sleep $TIMEOUT
 ccache -s
 killall ccache
+killall make
 "&
 KILLER_PID=$!
 

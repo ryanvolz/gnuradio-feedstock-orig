@@ -12,7 +12,7 @@ if [ $(uname) == Linux ]; then
     # timeout
     TIMEOUT=5400
 else
-    TIMEOUT=2100
+    TIMEOUT=1980
 fi
 bash -c "#!/bin/sh
 sleep $TIMEOUT

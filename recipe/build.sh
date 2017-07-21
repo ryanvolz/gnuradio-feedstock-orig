@@ -34,7 +34,7 @@ cd build
 #   GR_VIDEO_SDL needs sdl
 #   GRC needs pygtk
 cmake \
-    -DSWIG_EXECUTABLE=$PREFIX/bin/swig \
+    -DSWIG_EXECUTABLE=$PREFIX/bin/ccache-swig \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DLIB_SUFFIX="" \

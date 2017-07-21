@@ -16,7 +16,6 @@ build:
 requirements:
   build:
     - ccache-toolchain
-    - git
     - cmake >=3.2
     - boost 1.64.*
     - libusb >=1

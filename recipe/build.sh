@@ -4,26 +4,8 @@ source activate "${CONDA_DEFAULT_ENV}"
 # make builds with gcc>=5 compatible with conda-forge, currently using gcc<5
 CXXFLAGS="${CXXFLAGS} -D_GLIBCXX_USE_CXX11_ABI=0"
 
-# use ccache with swig
-ln -s ${PREFIX}/bin/ccache-swig ${PREFIX}/bin/conda_forge_ccache/swig
-
 # remove gnuradio's FindGSL.cmake to use cmake's version
 rm -f cmake/Modules/FindGSL.cmake
-
-if [ $(uname) == Linux ]; then
-    # CircleCI builds all packages on the same build and has a much larger
-    # timeout
-    TIMEOUT=5400
-else
-    TIMEOUT=1900
-fi
-bash -c "#!/bin/sh
-sleep $TIMEOUT
-ccache -s
-killall ccache
-killall make
-"&
-KILLER_PID=$!
 
 mkdir build
 cd build
@@ -36,37 +18,48 @@ cd build
 #   GR_FCD has libiconv linker error
 #   GR_VIDEO_SDL needs sdl
 #   GRC needs pygtk
+# the following are disabled to speed up the build (dependencies remain in
+# meta.yaml):
+#   GR_ATSC
+#   GR_DTV
+#   GR_FEC
+#   GR_NOAA
+#   GR_PAGER
+#   GR_TRELLIS
+#   GR_VOCODER
+#   GR_WAVELET
+#   GR_ZEROMQ
 cmake \
-    -DSWIG_EXECUTABLE=$PREFIX/bin/conda_forge_ccache/swig \
+    -DSWIG_EXECUTABLE=$PREFIX/bin/swig \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DLIB_SUFFIX="" \
     -DENABLE_DOXYGEN=OFF \
     -DENABLE_GNURADIO_RUNTIME=ON \
     -DENABLE_GR_ANALOG=ON \
-    -DENABLE_GR_ATSC=ON \
+    -DENABLE_GR_ATSC=OFF \
     -DENABLE_GR_AUDIO=ON \
     -DENABLE_GR_BLOCKS=ON \
     -DENABLE_GR_COMEDI=OFF \
     -DENABLE_GR_CHANNELS=ON \
     -DENABLE_GR_CTRLPORT=OFF \
     -DENABLE_GR_DIGITAL=ON \
-    -DENABLE_GR_DTV=ON \
+    -DENABLE_GR_DTV=OFF \
     -DENABLE_GR_FCD=OFF \
-    -DENABLE_GR_FEC=ON \
+    -DENABLE_GR_FEC=OFF \
     -DENABLE_GR_FFT=ON \
     -DENABLE_GR_FILTER=ON \
-    -DENABLE_GR_NOAA=ON \
-    -DENABLE_GR_PAGER=ON \
+    -DENABLE_GR_NOAA=OFF \
+    -DENABLE_GR_PAGER=OFF \
     -DENABLE_GR_QTGUI=ON \
-    -DENABLE_GR_TRELLIS=ON \
+    -DENABLE_GR_TRELLIS=OFF \
     -DENABLE_GR_UHD=ON \
     -DENABLE_GR_UTILS=ON \
     -DENABLE_GR_VIDEO_SDL=OFF \
-    -DENABLE_GR_VOCODER=ON \
-    -DENABLE_GR_WAVELET=ON \
+    -DENABLE_GR_VOCODER=OFF \
+    -DENABLE_GR_WAVELET=OFF \
     -DENABLE_GR_WXGUI=ON \
-    -DENABLE_GR_ZEROMQ=ON \
+    -DENABLE_GR_ZEROMQ=OFF \
     -DENABLE_GRC=OFF \
     -DENABLE_PYTHON=ON \
     -DENABLE_SPHINX=OFF \
@@ -76,6 +69,3 @@ cmake \
     ..
 make -j${CPU_COUNT}
 make install
-
-kill $KILLER_PID || echo "Script already exited"
-ccache -s

@@ -66,26 +66,26 @@ test:
   imports:
     - gnuradio.analog
 #    - gnuradio.atsc
-    - gnuradio.audio._audio_swig
-    - gnuradio.blocks._blocks_swig
-    - gnuradio.channels._channels_swig
+    - gnuradio.audio
+    - gnuradio.blocks
+    - gnuradio.channels
 #    - gnuradio.comedi
-    - gnuradio.digital._digital_swig
+    - gnuradio.digital
 #    - gnuradio.dtv
 #    - gnuradio.fcd
 #    - gnuradio.fec
-    - gnuradio.fft._fft_swig
-    - gnuradio.filter._filter_swig
+    - gnuradio.fft
+    - gnuradio.filter
     - gnuradio.gr
 #    - gnuradio.noaa
 #    - gnuradio.pager
-    - gnuradio.qtgui._qtgui_swig
+    - gnuradio.qtgui
 #    - gnuradio.trellis
-    - gnuradio.uhd._uhd_swig
+    - gnuradio.uhd
 #    - gnuradio.video_sdl
 #    - gnuradio.vocoder
 #    - gnuradio.wavelet
-    - gnuradio.wxgui._wxgui_swig
+    - gnuradio.wxgui
 #    - gnuradio.zeromq
     - pmt
 

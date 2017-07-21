@@ -46,6 +46,7 @@ requirements:
 
   run:
     - boost 1.64.*
+    - libusb >=1
     - fftw
     - python >=2.7,<3
     - numpy

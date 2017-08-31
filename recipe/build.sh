@@ -65,7 +65,7 @@ cmake \
     -DENABLE_SPHINX=OFF \
     -DENABLE_TESTING=OFF \
     -DENABLE_VOLK=ON \
-    -DENABLE_INTERNAL_VOLK=ON \
+    -DENABLE_INTERNAL_VOLK=OFF \
     ..
 make -j${CPU_COUNT}
 make install

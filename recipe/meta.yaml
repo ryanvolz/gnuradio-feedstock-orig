@@ -15,52 +15,77 @@ build:
 
 requirements:
   build:
-    - toolchain
-    - cmake >=3.2
     - boost 1.64.*
-    - libusb >=1
-    - fftw
-    - pkg-config
     - cheetah
-    - log4cpp
+    - cmake >=3.2
     - cppunit
-  # python wrappers
+    - fftw
+    - libusb >=1
+    - log4cpp
+    - numpy
+    - pkg-config
     - python >=2.7,<3
     - swig
-    - numpy
-  # wavelet
-    - gsl
-  # qtgui
+    - toolchain
+  # documentation
+    #- doxygen
+    #- graphviz
+    #- sphinx
+  # gnuradio.audio
+    - portaudio
+  # gnuradio.comedi
+    #- comedi
+  # gnuradio companion
+    #- lxml
+    #- pygtk
+  # gnuradio ctrlport
+    #- thrift
+  # gnuradio.qtgui
     - pyqt >=4,<5
     - qwt
-  # wxgui
-    - wxpython
-    - lxml
-  # audio
-    - portaudio
-  # zeromq
-    - zeromq
-    - cppzmq
-  # USRP hardware driver
+  # gnuradio.uhd
     - uhd 3.10.2.*
+  # gnuradio.video_sdl
+    #- sdl
+  # gnuradio.wxgui
+    - wxpython
+  # gnuradio.wavelet
+    #- gsl
+  # gnuradio.zeromq
+    #- cppzmq
+    #- zeromq
 
   run:
     - boost 1.64.*
-    - libusb >=1
-    - fftw
-    - python >=2.7,<3
-    - numpy
     - cheetah
+    - fftw
+    - libusb >=1
     - log4cpp
-    - gsl
+    - numpy
+    - python >=2.7,<3
+  # gnuradio.audio
+    - portaudio
+  # gnuradio.comedi
+    #- comedi
+  # gnuradio companion
+    #- lxml
+    #- pygtk
+  # gnuradio ctrlport
+    #- thrift
+  # gnuradio.qtgui
     - pyqt >=4,<5
     - qwt
-    - wxpython
-    - lxml
-    - portaudio
-    - zeromq
-    - pyzmq
+  # gnuradio.uhd
     - uhd 3.10.2.*
+  # gnuradio.video_sdl
+    #- sdl
+  # gnuradio.wxgui
+    - wxpython
+  # gnuradio.wavelet
+    #- gsl
+  # gnuradio.zeromq
+    #- pyzmq
+    #- zeromq
 
 test:
   imports:

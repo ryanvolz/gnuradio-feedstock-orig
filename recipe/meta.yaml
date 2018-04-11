@@ -1,13 +1,14 @@
-{% set version = "3.7.13.4" %}
+{% set hash = "" %}
+{% set version = "" %}
 
 package:
   name: gnuradio
-  version: {{ version }}
+  # 9 prefix in local version needed as hack to ensure proper ordering (after 0)
+  version: {{ version }}+9g{{ hash[:7] }}
 
 source:
-  url: https://gnuradio.org/releases/gnuradio/gnuradio-{{ version }}.tar.gz
-#  url: https://github.com/gnuradio/gnuradio/archive/v{{ version }}.tar.gz
-  sha256: c536c268b1e9c24f1206bbc881a5819ac46e662f4e8beaded6f3f441d3502f0d
+  git_url: https://github.com/gnuradio/gnuradio.git
+  git_rev: {{ hash }}
 
 build:
   number: 0

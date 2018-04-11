@@ -1,10 +1,11 @@
 channels:
   sources:
   - conda-forge
+  - ryanvolz/label/prerelease
   - ryanvolz
   - defaults
   targets:
-  - [ryanvolz, main]
+  - [ryanvolz, prerelease]
 github:
   user_or_org: ryanvolz
 #provider:

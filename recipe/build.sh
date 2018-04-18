@@ -14,23 +14,22 @@ cd build
 #   DOXYGEN/SPHINX because we don't need docs in the conda package
 #   TESTING because we don't intend to run the unit tests, just import test
 #   GR_COMEDI needs comedi
-#   GR_CTRLPORT builds partially but needs thrift for full support
 #   GR_FCD has libiconv linker error
-#   GR_VIDEO_SDL needs sdl
 #   GRC needs pygtk
 # the following are disabled to speed up the build (dependencies remain in
 # meta.yaml):
 #   GR_ATSC
+#   GR_CTRLPORT
 #   GR_DTV
 #   GR_FEC
 #   GR_NOAA
 #   GR_PAGER
 #   GR_TRELLIS
+#   GR_VIDEO_SDL
 #   GR_VOCODER
 #   GR_WAVELET
 #   GR_ZEROMQ
 cmake \
-    -DSWIG_EXECUTABLE=$PREFIX/bin/swig \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DLIB_SUFFIX="" \

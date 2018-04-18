@@ -1,39 +1,47 @@
-{% set version = "3.7.11" %}
+{% set version = "3.7.12.0" %}
 
 package:
   name: gnuradio
   version: {{ version }}
 
 source:
-  url: https://gnuradio.org/releases/gnuradio/gnuradio-{{ version }}.tar.gz
-  sha256: 87d9ba3183858efdbb237add3f9de40f7d65f25e16904a9bc8d764a7287252d4
+#  url: https://gnuradio.org/releases/gnuradio/gnuradio-{{ version }}.tar.gz
+  url: https://github.com/gnuradio/gnuradio/archive/v{{ version }}.tar.gz
+  sha256: 20bb08263fb934c3474b20bd55e58b9324782b5a18cdb3f7bb5150276fcb5ceb
 
 build:
-  number: 4
+  number: 0
   skip: True  # [win]
   detect_binary_files_with_prefix: True
+  features:
+    - vc14  # [win]
 
 requirements:
   build:
-    - boost 1.64.*
+    - boost 1.66.0
     - cheetah
     - cmake >=3.2
-    - cppunit
     - fftw
+    - jom  # [win]
     - libusb >=1
     - log4cpp
+    #- mako >=0.4.2  # will be required to replace Cheetah in an upcoming version
     - numpy
-    - pkg-config
+    - pkg-config  # [not win]
     - python >=2.7,<3
-    - swig
+    - swig >=2.0.4
     - toolchain
-    - volk
+    - vc 14  # [win]
+    - volk >=1.4
   # documentation
     #- doxygen
     #- graphviz
     #- sphinx
+  # testing
+    #- cppunit
   # gnuradio.audio
-    - portaudio
+    - alsa-lib  # [linux]
+    - portaudio  # [not osx]
   # gnuradio.comedi
     #- comedi
   # gnuradio companion
@@ -41,13 +49,14 @@ requirements:
     #- pygtk
   # gnuradio ctrlport
     #- thrift
+    #- thrift-cpp
   # gnuradio.qtgui
     - pyqt >=4,<5
-    - qwt
+    - qwt >=5.2,<=6.2.0
   # gnuradio.uhd
-    - uhd 3.10.2.*
+    - uhd 3.11.0.*
   # gnuradio.video_sdl
-    #- sdl
+    #- sdl2
   # gnuradio.wxgui
     - wxpython
   # gnuradio.wavelet
@@ -57,16 +66,19 @@ requirements:
     #- zeromq
 
   run:
-    - boost 1.64.*
+    - boost 1.66.0
     - cheetah
     - fftw
     - libusb >=1
     - log4cpp
+    #- mako >=0.4.2  # will be required to replace Cheetah in an upcoming version
     - numpy
     - python >=2.7,<3
-    - volk
+    - vc 14  # [win]
+    - volk >=1.4
   # gnuradio.audio
-    - portaudio
+    - alsa-lib  # [linux]
+    - portaudio  # [not osx]
   # gnuradio.comedi
     #- comedi
   # gnuradio companion
@@ -74,13 +86,14 @@ requirements:
     #- pygtk
   # gnuradio ctrlport
     #- thrift
+    #- thrift-cpp
   # gnuradio.qtgui
     - pyqt >=4,<5
-    - qwt
+    - qwt >=5.2,<=6.2.0
   # gnuradio.uhd
-    - uhd 3.10.2.*
+    - uhd 3.11.0.*
   # gnuradio.video_sdl
-    #- sdl
+    #- sdl2
   # gnuradio.wxgui
     - wxpython
   # gnuradio.wavelet
@@ -90,10 +103,14 @@ requirements:
     #- zeromq
 
 test:
+  commands:
+    - conda inspect linkages -p $PREFIX gnuradio  # [not win]
+    - conda inspect objects -p $PREFIX gnuradio  # [osx]
+
   imports:
     - gnuradio.analog
 #    - gnuradio.atsc
-    - gnuradio.audio  # [not osx]
+    - gnuradio.audio
     - gnuradio.blocks
     - gnuradio.channels
 #    - gnuradio.comedi

@@ -68,5 +68,5 @@ cmake -G "Ninja" \
     -DENABLE_VOLK=ON \
     -DENABLE_INTERNAL_VOLK=OFF \
     ..
-cmake --build .
+cmake --build . -- -j $((${CPU_COUNT}+2))
 cmake --build . --target install

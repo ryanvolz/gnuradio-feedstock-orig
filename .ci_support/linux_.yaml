@@ -1,5 +1,7 @@
 boost:
 - 1.66.0
+boost_cpp:
+- 1.66.0
 c_compiler:
 - gcc
 cxx_compiler:
@@ -16,5 +18,10 @@ pyqt:
 - '4.11'
 python:
 - '2.7'
+qt:
+- '4.8'
 zeromq:
 - 4.2.1
+zip_keys:
+- - pyqt
+  - qt

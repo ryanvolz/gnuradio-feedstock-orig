@@ -27,14 +27,16 @@ environment.
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/ryanvolz/gnuradio-feedstock.svg?style=shield)](https://circleci.com/gh/ryanvolz/gnuradio-feedstock)
-OSX: ![](https://cdn.rawgit.com/conda-forge/conda-smithy/90845bba35bec53edac7a16638aa4d77217a3713/conda_smithy/static/disabled.svg)
-Windows: ![](https://cdn.rawgit.com/conda-forge/conda-smithy/90845bba35bec53edac7a16638aa4d77217a3713/conda_smithy/static/disabled.svg)
+[![Linux](https://img.shields.io/circleci/project/github/ryanvolz/gnuradio-feedstock/master.svg?label=Linux)](https://circleci.com/gh/ryanvolz/gnuradio-feedstock)
+[![OSX](https://img.shields.io/travis/ryanvolz/gnuradio-feedstock/master.svg?label=macOS)](https://travis-ci.org/ryanvolz/gnuradio-feedstock)
+![Windows disabled](https://img.shields.io/badge/Windows-disabled-lightgrey.svg)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/ryanvolz/gnuradio/badges/version.svg)](https://anaconda.org/ryanvolz/gnuradio)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/ryanvolz/gnuradio/badges/downloads.svg)](https://anaconda.org/ryanvolz/gnuradio)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gnuradio-green.svg)](https://anaconda.org/ryanvolz/gnuradio) | [![Conda Downloads](https://img.shields.io/conda/dn/ryanvolz/gnuradio.svg)](https://anaconda.org/ryanvolz/gnuradio) | [![Conda Version](https://img.shields.io/conda/vn/ryanvolz/gnuradio.svg)](https://anaconda.org/ryanvolz/gnuradio) | [![Conda Platforms](https://img.shields.io/conda/pn/ryanvolz/gnuradio.svg)](https://anaconda.org/ryanvolz/gnuradio) |
 
 Installing gnuradio
 ===================

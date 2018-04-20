@@ -10,28 +10,30 @@ source:
   sha256: 20bb08263fb934c3474b20bd55e58b9324782b5a18cdb3f7bb5150276fcb5ceb
 
 build:
-  number: 0
-  skip: True  # [osx or win]
-  detect_binary_files_with_prefix: True
-  features:
-    - vc14  # [win]
+  number: 1
+  skip: True  # [win]
+  run_exports:
+    - {{ pin_subpackage('gnuradio') }}
 
 requirements:
   build:
-    - boost 1.66.0
-    - cheetah
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - cmake >=3.2
-    - fftw
     - jom  # [win]
+    - ninja  # [unix]
+
+  host:
+    - boost
+    - cheetah
+    - fftw
     - libusb >=1
     - log4cpp
     #- mako >=0.4.2  # will be required to replace Cheetah in an upcoming version
     - numpy
     - pkg-config  # [not win]
-    - python >=2.7,<3
+    - python
     - swig >=2.0.4
-    - toolchain
-    - vc 14  # [win]
     - volk >=1.4
   # documentation
     #- doxygen
@@ -43,7 +45,7 @@ requirements:
     - alsa-lib  # [linux]
     - portaudio  # [not osx]
   # gnuradio.comedi
-    #- comedi
+    #- comedi  # [linux]
   # gnuradio companion
     #- lxml
     #- pygtk
@@ -51,10 +53,10 @@ requirements:
     #- thrift
     #- thrift-cpp
   # gnuradio.qtgui
-    - pyqt >=4,<5
+    - pyqt
     - qwt >=5.2,<=6.2.0
   # gnuradio.uhd
-    - uhd 3.11.0.*
+    - uhd
   # gnuradio.video_sdl
     #- sdl2
   # gnuradio.wxgui
@@ -66,41 +68,36 @@ requirements:
     #- zeromq
 
   run:
-    - boost 1.66.0
+   # the pin_compatible requirements below are only needed until respective package has run_exports
+    - {{ pin_compatible('boost', max_pin='x.x.x') }}
     - cheetah
-    - fftw
-    - libusb >=1
-    - log4cpp
+    - {{ pin_compatible('fftw') }}
     #- mako >=0.4.2  # will be required to replace Cheetah in an upcoming version
     - numpy
-    - python >=2.7,<3
-    - vc 14  # [win]
-    - volk >=1.4
+    - python
   # gnuradio.audio
-    - alsa-lib  # [linux]
-    - portaudio  # [not osx]
+    - {{ pin_compatible('alsa-lib') }}  # [linux]
+    - {{ pin_compatible('portaudio') }}  # [not osx]
   # gnuradio.comedi
-    #- comedi
+    #- {{ pin_compatible('comedi') }}  # [linux]
   # gnuradio companion
     #- lxml
     #- pygtk
   # gnuradio ctrlport
     #- thrift
-    #- thrift-cpp
+    #- {{ pin_compatible('thrift-cpp') }}
   # gnuradio.qtgui
-    - pyqt >=4,<5
-    - qwt >=5.2,<=6.2.0
-  # gnuradio.uhd
-    - uhd 3.11.0.*
+    - {{ pin_compatible('pyqt', max_pin='x.x') }}
+    - {{ pin_compatible('qwt') }}
   # gnuradio.video_sdl
-    #- sdl2
+    #- {{ pin_compatible('sdl2') }}
   # gnuradio.wxgui
     - wxpython
   # gnuradio.wavelet
-    #- gsl
+    #- {{ pin_compatible('gsl') }}
   # gnuradio.zeromq
     #- pyzmq
-    #- zeromq
+    #- {{ pin_compatible('zeromq', max_pin='x.x.x') }}
 
 test:
   commands:

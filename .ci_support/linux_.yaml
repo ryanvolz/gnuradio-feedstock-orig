@@ -1,0 +1,20 @@
+boost:
+- 1.66.0
+c_compiler:
+- gcc
+cxx_compiler:
+- gxx
+gsl:
+- '2.2'
+numpy:
+- '1.9'
+pin_run_as_build:
+  python:
+    max_pin: x.x
+    min_pin: x.x
+pyqt:
+- '4.11'
+python:
+- '2.7'
+zeromq:
+- 4.2.1

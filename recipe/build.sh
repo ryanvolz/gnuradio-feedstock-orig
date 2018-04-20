@@ -31,7 +31,7 @@ cd build
 #   GR_VOCODER
 #   GR_WAVELET
 #   GR_ZEROMQ
-cmake \
+cmake -G "Ninja" \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DLIB_SUFFIX="" \
@@ -68,5 +68,5 @@ cmake \
     -DENABLE_VOLK=ON \
     -DENABLE_INTERNAL_VOLK=OFF \
     ..
-make -j${CPU_COUNT}
-make install
+cmake --build .
+cmake --build . --target install

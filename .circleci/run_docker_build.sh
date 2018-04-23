@@ -60,14 +60,6 @@ conda clean --lock
 conda install --yes --quiet conda-forge-ci-setup=1 conda-build
 source run_conda_forge_build_setup
 
-
-# Install the yum requirements defined canonically in the
-# "recipe/yum_requirements.txt" file. After updating that file,
-# run "conda smithy rerender" and this line be updated
-# automatically.
-/usr/bin/sudo -n yum install -y gtk2
-
-
 conda build /home/conda/recipe_root -m /home/conda/feedstock_root/.ci_support/${CONFIG}.yaml --quiet || exit 1
 upload_or_check_non_existence /home/conda/recipe_root ryanvolz --channel=main -m /home/conda/feedstock_root/.ci_support/${CONFIG}.yaml || exit 1
 

@@ -57,6 +57,12 @@ requirements:
     - pyqt
     - qt
     - qwt >=5.2,<=6.2.0
+    - {{ cdt('libice-devel') }}  # [linux]
+    - {{ cdt('libsm-devel') }}  # [linux]
+    - {{ cdt('libx11-devel') }}  # [linux]
+    - {{ cdt('libxext-devel') }}  # [linux]
+    - {{ cdt('libxrender-devel') }}  # [linux]
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
   # gnuradio.uhd
     - uhd
   # gnuradio.video_sdl

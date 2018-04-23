@@ -69,10 +69,6 @@ requirements:
     #- sdl2
   # gnuradio.wxgui
     - wxpython
-    # the following are needed only until wxpython package depends on them correctly
-    - cairo  # [linux]
-    - pango  # [linux]
-    - glib  # [linux]
   # gnuradio.wavelet
     #- gsl
   # gnuradio.zeromq
@@ -107,10 +103,6 @@ requirements:
     #- {{ pin_compatible('sdl2') }}
   # gnuradio.wxgui
     - wxpython
-    # the following are needed only until wxpython package depends on them correctly
-    - cairo  # [linux]
-    - pango  # [linux]
-    - glib  # [linux]
   # gnuradio.wavelet
     #- {{ pin_compatible('gsl') }}
   # gnuradio.zeromq

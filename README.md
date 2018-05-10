@@ -27,8 +27,7 @@ environment.
 Current build status
 ====================
 
-[![Linux](https://img.shields.io/circleci/project/github/ryanvolz/gnuradio-feedstock/master.svg?label=Linux)](https://circleci.com/gh/ryanvolz/gnuradio-feedstock)
-[![OSX](https://img.shields.io/travis/ryanvolz/gnuradio-feedstock/master.svg?label=macOS)](https://travis-ci.org/ryanvolz/gnuradio-feedstock)
+[![Linux,OSX](https://img.shields.io/circleci/project/github/ryanvolz/gnuradio-feedstock/master.svg?label=Linux,OSX)](https://circleci.com/gh/ryanvolz/gnuradio-feedstock)
 ![Windows disabled](https://img.shields.io/badge/Windows-disabled-lightgrey.svg)
 
 Current release info

@@ -5,9 +5,9 @@ boost:
 boost_cpp:
 - 1.66.0
 c_compiler:
-- clang
+- toolchain_c
 cxx_compiler:
-- clangxx
+- toolchain_cxx
 gsl:
 - '2.2'
 macos_machine:
@@ -17,9 +17,17 @@ macos_min_version:
 numpy:
 - '1.9'
 pin_run_as_build:
+  gsl:
+    max_pin: x.x
+  pyqt:
+    max_pin: x.x
   python:
     max_pin: x.x
     min_pin: x.x
+  qt:
+    max_pin: x.x
+  zeromq:
+    max_pin: x.x.x
 pyqt:
 - '4.11'
 python:

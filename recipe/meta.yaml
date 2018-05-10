@@ -1,4 +1,5 @@
 {% set version = "3.7.12.0" %}
+{% set blas_variant = "openblas" %}
 
 package:
   name: gnuradio
@@ -10,7 +11,7 @@ source:
   sha256: 20bb08263fb934c3474b20bd55e58b9324782b5a18cdb3f7bb5150276fcb5ceb
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win]
   run_exports:
     - {{ pin_subpackage('gnuradio') }}
@@ -63,11 +64,11 @@ requirements:
   # gnuradio.comedi
     #- comedi  # [linux]
   # gnuradio companion
-    #- lxml
+    - lxml
     #- pygtk
   # gnuradio ctrlport
-    #- thrift
-    #- thrift-cpp
+    - thrift
+    - thrift-cpp >=0.10,<0.11  # build errors with 0.11
   # gnuradio.qtgui
     - pyqt
     - qt
@@ -79,10 +80,10 @@ requirements:
   # gnuradio.wxgui
     - wxpython
   # gnuradio.wavelet
-    #- gsl
+    - gsl
   # gnuradio.zeromq
-    #- cppzmq
-    #- zeromq
+    - cppzmq
+    - zeromq
 
   run:
    # the pin_compatible requirements below are only needed until respective package has run_exports
@@ -102,8 +103,8 @@ requirements:
     #- lxml
     #- pygtk
   # gnuradio ctrlport
-    #- thrift
-    #- {{ pin_compatible('thrift-cpp') }}
+    - thrift
+    - {{ pin_compatible('thrift-cpp', max_pin='x.x.x') }}
   # gnuradio.qtgui
     - {{ pin_compatible('pyqt', max_pin='x.x') }}
     - {{ pin_compatible('qt', max_pin='x.x') }}
@@ -113,10 +114,14 @@ requirements:
   # gnuradio.wxgui
     - wxpython
   # gnuradio.wavelet
-    #- {{ pin_compatible('gsl') }}
+    - gsl
+    # dep on openblas needed from linking with gsl because conda-forge gsl
+    # package replaces libgslcblas with link to libopenblas
+    # (to remove, check for gsl package update to include run_exports)
+    - openblas  # [not win]
   # gnuradio.zeromq
-    #- pyzmq
-    #- {{ pin_compatible('zeromq', max_pin='x.x.x') }}
+    - pyzmq
+    - {{ pin_compatible('zeromq', max_pin='x.x.x') }}
 
 test:
   commands:
@@ -125,28 +130,28 @@ test:
 
   imports:
     - gnuradio.analog
-#    - gnuradio.atsc
+    - gnuradio.atsc
     - gnuradio.audio
     - gnuradio.blocks
     - gnuradio.channels
 #    - gnuradio.comedi
     - gnuradio.digital
-#    - gnuradio.dtv
+    - gnuradio.dtv
 #    - gnuradio.fcd
-#    - gnuradio.fec
+    - gnuradio.fec
     - gnuradio.fft
     - gnuradio.filter
     - gnuradio.gr
-#    - gnuradio.noaa
-#    - gnuradio.pager
+    - gnuradio.noaa
+    - gnuradio.pager
     - gnuradio.qtgui
-#    - gnuradio.trellis
+    - gnuradio.trellis
     - gnuradio.uhd
 #    - gnuradio.video_sdl
-#    - gnuradio.vocoder
-#    - gnuradio.wavelet
+    - gnuradio.vocoder
+    - gnuradio.wavelet
     - gnuradio.wxgui
-#    - gnuradio.zeromq
+    - gnuradio.zeromq
     - pmt
 
 about:

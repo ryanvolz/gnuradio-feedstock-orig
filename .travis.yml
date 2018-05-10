@@ -8,7 +8,9 @@ osx_image: xcode6.4
 
 env:
   matrix:
-    - CONFIG=osx_
+    - CONFIG=osx_python2.7
+    - CONFIG=osx_python3.5
+    - CONFIG=osx_python3.6
 
   global:
     # The BINSTAR_TOKEN secure variable. This is defined canonically in conda-forge.yml.
@@ -48,7 +50,9 @@ install:
       source /Users/travis/miniconda3/bin/activate root
       conda config --remove channels defaults
       conda config --add channels defaults
+      conda config --add channels pkgw-forge
       conda config --add channels ryanvolz
+      conda config --add channels ryanvolz/label/prerelease
       conda config --add channels conda-forge
       conda config --set show_channel_urls true
       conda install --yes --quiet conda-forge-ci-setup=1
@@ -57,4 +61,4 @@ install:
 script:
   - conda build ./recipe -m ./.ci_support/${CONFIG}.yaml
 
-  - upload_or_check_non_existence ./recipe ryanvolz --channel=main -m ./.ci_support/${CONFIG}.yaml
+  - upload_or_check_non_existence ./recipe ryanvolz --channel=prerelease -m ./.ci_support/${CONFIG}.yaml

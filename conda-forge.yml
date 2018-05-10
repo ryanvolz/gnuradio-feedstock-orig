@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - ryanvolz/label/prerelease
   - ryanvolz
+  - pkgw-forge
   - defaults
   targets:
   - [ryanvolz, prerelease]

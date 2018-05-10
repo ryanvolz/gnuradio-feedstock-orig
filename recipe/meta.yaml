@@ -1,5 +1,4 @@
 {% set version = "3.7.12.0" %}
-{% set blas_variant = "openblas" %}
 
 package:
   name: gnuradio
@@ -81,6 +80,10 @@ requirements:
     - wxpython
   # gnuradio.wavelet
     - gsl
+    # dep on openblas needed from linking with gsl because conda-forge gsl
+    # package replaces libgslcblas with link to libopenblas
+    # (to remove, check for gsl package update to include run_exports)
+    - openblas  # [not win]
   # gnuradio.zeromq
     - cppzmq
     - zeromq

@@ -17,7 +17,6 @@ cd build
 #   TESTING because we don't intend to run the unit tests, just import test
 #   GR_COMEDI needs comedi
 #   GR_VIDEO_SDL needs sdl1 (conda-forge has sdl2)
-#   GRC needs pygtk
 # the following can be disabled to speed up the build (dependencies remain in
 # meta.yaml):
 #   GR_CTRLPORT
@@ -27,6 +26,7 @@ cd build
 #   GR_VOCODER
 #   GR_WAVELET
 #   GR_ZEROMQ
+#   GRC
 cmake -G "Ninja" \
     -DCMAKE_PREFIX_PATH=$PREFIX \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
@@ -54,7 +54,7 @@ cmake -G "Ninja" \
     -DENABLE_GR_VOCODER=ON \
     -DENABLE_GR_WAVELET=ON \
     -DENABLE_GR_ZEROMQ=ON \
-    -DENABLE_GRC=OFF \
+    -DENABLE_GRC=ON \
     -DENABLE_PYTHON=ON \
     -DENABLE_SPHINX=OFF \
     -DENABLE_TESTING=OFF \

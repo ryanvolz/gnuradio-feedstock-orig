@@ -66,10 +66,10 @@ requirements:
   # gnuradio.comedi
     #- comedi  # [linux]
   # gnuradio companion
-    #- gtk3
-    #- lxml
-    #- pygobject
-    #- pyyaml
+    - gtk3
+    - lxml
+    - pygobject
+    - pyyaml
   # gnuradio ctrlport
     - thrift
     - thrift-cpp >=0.10,<0.11  # build errors with 0.11
@@ -109,10 +109,10 @@ requirements:
   # gnuradio.comedi
     #- {{ pin_compatible('comedi') }}  # [linux]
   # gnuradio companion
-    #- gtk3
-    #- lxml
-    #- pygobject
-    #- pyyaml
+    - {{ pin_compatible('gtk3') }}
+    - lxml
+    - pygobject
+    - pyyaml
   # gnuradio ctrlport
     - thrift
     - {{ pin_compatible('thrift-cpp', max_pin='x.x.x') }}

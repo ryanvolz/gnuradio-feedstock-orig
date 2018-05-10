@@ -24,6 +24,8 @@ requirements:
     - jom  # [win]
     - ninja  # [unix]
    # below are needed to link with Qt for qtgui
+   # some may be unused because of proper conda packages that get pulled in
+   # (e.g. by gtk3) but keep them here as backup for the time being
     - {{ cdt('libice') }}  # [linux]
     - {{ cdt('libselinux') }}  # [linux]
     - {{ cdt('libsm') }}  # [linux]
@@ -42,16 +44,16 @@ requirements:
   host:
     - boost
     - boost-cpp
-    - cheetah
     - fftw
     - libusb >=1
     - log4cpp
-    #- mako >=0.4.2  # will be required to replace Cheetah in an upcoming version
+    - mako
     - numpy
     - pkg-config  # [not win]
     - python
-    - swig >=2.0.4
-    - volk >=1.4
+    - six
+    - swig
+    - volk 1.3  # update to 1.4+ when possible
   # documentation
     #- doxygen
     #- graphviz
@@ -64,15 +66,17 @@ requirements:
   # gnuradio.comedi
     #- comedi  # [linux]
   # gnuradio companion
-    - lxml
-    #- pygtk
+    #- gtk3
+    #- lxml
+    #- pygobject
+    #- pyyaml
   # gnuradio ctrlport
     - thrift
     - thrift-cpp >=0.10,<0.11  # build errors with 0.11
   # gnuradio.qtgui
     - pyqt
     - qt
-    - qwt >=5.2,<=6.2.0
+    - qwt
   # gnuradio.uhd
     - uhd
   # gnuradio.video_sdl
@@ -92,20 +96,23 @@ requirements:
   run:
     - boost
     - boost-cpp
-    - cheetah
     - {{ pin_compatible('fftw') }}
     - {{ pin_compatible('log4cpp') }}
-    #- mako >=0.4.2  # will be required to replace Cheetah in an upcoming version
+    - mako
     - numpy
     - python
+    - six
+    - {{ pin_compatible('volk', max_pin='x.x.x.x') }}  # only needed until we can upgrade to volk 1.4+
   # gnuradio.audio
     - {{ pin_compatible('alsa-lib') }}  # [linux]
     - {{ pin_compatible('portaudio') }}  # [not osx]
   # gnuradio.comedi
     #- {{ pin_compatible('comedi') }}  # [linux]
   # gnuradio companion
+    #- gtk3
     #- lxml
-    #- pygtk
+    #- pygobject
+    #- pyyaml
   # gnuradio ctrlport
     - thrift
     - {{ pin_compatible('thrift-cpp', max_pin='x.x.x') }}
@@ -134,27 +141,22 @@ test:
 
   imports:
     - gnuradio.analog
-    - gnuradio.atsc
     - gnuradio.audio
     - gnuradio.blocks
     - gnuradio.channels
 #    - gnuradio.comedi
     - gnuradio.digital
     - gnuradio.dtv
-#    - gnuradio.fcd
     - gnuradio.fec
     - gnuradio.fft
     - gnuradio.filter
     - gnuradio.gr
-    - gnuradio.noaa
-    - gnuradio.pager
     - gnuradio.qtgui
     - gnuradio.trellis
     - gnuradio.uhd
 #    - gnuradio.video_sdl
     - gnuradio.vocoder
     - gnuradio.wavelet
-    - gnuradio.wxgui
     - gnuradio.zeromq
     - pmt
 

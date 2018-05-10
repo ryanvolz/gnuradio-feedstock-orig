@@ -13,7 +13,7 @@ build:
   number: 4
   skip: True  # [win]
   run_exports:
-    - {{ pin_subpackage('gnuradio') }}
+    - {{ pin_subpackage('gnuradio', min_pin='x.x.x', max_pin='x.x.x') }}
 
 requirements:
   build:

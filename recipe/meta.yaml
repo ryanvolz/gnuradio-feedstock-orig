@@ -1,5 +1,5 @@
-{% set hash = "" %}
-{% set version = "" %}
+{% set hash = "257857a4924d72dde2e9588af562e54ff83cf2b1" %}
+{% set version = "3.8.0.0.dev0" %}
 
 package:
   name: gnuradio

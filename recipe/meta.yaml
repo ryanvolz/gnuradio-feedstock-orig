@@ -10,7 +10,7 @@ source:
   sha256: 20bb08263fb934c3474b20bd55e58b9324782b5a18cdb3f7bb5150276fcb5ceb
 
 build:
-  number: 4
+  number: 5
   skip: True  # [win]
   run_exports:
     - {{ pin_subpackage('gnuradio', min_pin='x.x.x', max_pin='x.x.x') }}

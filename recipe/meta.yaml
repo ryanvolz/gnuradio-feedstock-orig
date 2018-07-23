@@ -1,5 +1,5 @@
-{% set hash = "257857a4924d72dde2e9588af562e54ff83cf2b1" %}
-{% set version = "3.8.0.0.dev0" %}
+{% set hash = "53ddb74a315c800268ab83e0dc8f67bbcab54be8" %}
+{% set version = "3.8.0.0.dev1" %}
 
 package:
   name: gnuradio
@@ -53,7 +53,7 @@ requirements:
     - python
     - six
     - swig
-    - volk 1.3  # update to 1.4+ when possible
+    - volk >=1.4
   # documentation
     #- doxygen
     #- graphviz
@@ -102,7 +102,6 @@ requirements:
     - numpy
     - python
     - six
-    - {{ pin_compatible('volk', max_pin='x.x.x.x') }}  # only needed until we can upgrade to volk 1.4+
   # gnuradio.audio
     - {{ pin_compatible('alsa-lib') }}  # [linux]
     - {{ pin_compatible('portaudio') }}  # [not osx]

@@ -1,16 +1,16 @@
-{% set version = "3.7.12.0" %}
+{% set version = "3.7.13.4" %}
 
 package:
   name: gnuradio
   version: {{ version }}
 
 source:
-#  url: https://gnuradio.org/releases/gnuradio/gnuradio-{{ version }}.tar.gz
-  url: https://github.com/gnuradio/gnuradio/archive/v{{ version }}.tar.gz
-  sha256: 20bb08263fb934c3474b20bd55e58b9324782b5a18cdb3f7bb5150276fcb5ceb
+  url: https://gnuradio.org/releases/gnuradio/gnuradio-{{ version }}.tar.gz
+#  url: https://github.com/gnuradio/gnuradio/archive/v{{ version }}.tar.gz
+  sha256: c536c268b1e9c24f1206bbc881a5819ac46e662f4e8beaded6f3f441d3502f0d
 
 build:
-  number: 5
+  number: 0
   skip: True  # [win]
   run_exports:
     - {{ pin_subpackage('gnuradio', min_pin='x.x.x', max_pin='x.x.x') }}

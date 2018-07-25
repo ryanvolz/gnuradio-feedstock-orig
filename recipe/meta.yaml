@@ -93,6 +93,7 @@ requirements:
     - boost-cpp
     - cheetah
     - {{ pin_compatible('fftw') }}
+    - {{ pin_compatible('log4cpp') }}
     #- mako >=0.4.2  # will be required to replace Cheetah in an upcoming version
     - numpy
     - python

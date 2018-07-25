@@ -89,9 +89,8 @@ requirements:
     - zeromq
 
   run:
-   # the pin_compatible requirements below are only needed until respective package has run_exports
-    - {{ pin_compatible('boost', max_pin='x.x.x') }}
-    - {{ pin_compatible('boost-cpp', max_pin='x.x.x') }}
+    - boost
+    - boost-cpp
     - cheetah
     - {{ pin_compatible('fftw') }}
     #- mako >=0.4.2  # will be required to replace Cheetah in an upcoming version
@@ -109,8 +108,8 @@ requirements:
     - thrift
     - {{ pin_compatible('thrift-cpp', max_pin='x.x.x') }}
   # gnuradio.qtgui
-    - {{ pin_compatible('pyqt', max_pin='x.x') }}
-    - {{ pin_compatible('qt', max_pin='x.x') }}
+    - pyqt
+    - qt
     - {{ pin_compatible('qwt') }}
   # gnuradio.video_sdl
     #- {{ pin_compatible('sdl2') }}
@@ -124,7 +123,7 @@ requirements:
     - openblas  # [not win]
   # gnuradio.zeromq
     - pyzmq
-    - {{ pin_compatible('zeromq', max_pin='x.x.x') }}
+    - zeromq
 
 test:
   commands:

@@ -108,10 +108,10 @@ requirements:
   # gnuradio.comedi
     #- {{ pin_compatible('comedi') }}  # [linux]
   # gnuradio companion
-    - {{ pin_compatible('gtk3') }}
-    - lxml
-    - pygobject
-    - pyyaml
+    - {{ pin_compatible('gtk3') }}  # [not win]
+    - lxml  # [not win]
+    - pygobject  # [not win]
+    - pyyaml  # [not win]
   # gnuradio ctrlport
     - thrift
     - {{ pin_compatible('thrift-cpp', max_pin='x.x.x') }}

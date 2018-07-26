@@ -11,8 +11,8 @@ source:
   git_rev: {{ hash }}
 
 build:
-  number: 0
-  skip: True  # [win]
+  number: 1
+  skip: True  # [win and py2k]
   run_exports:
     - {{ pin_subpackage('gnuradio', min_pin='x.x.x', max_pin='x.x.x') }}
 
@@ -139,25 +139,26 @@ test:
     - conda inspect objects -p $PREFIX gnuradio  # [osx]
 
   imports:
-#    - gnuradio.analog
-#    - gnuradio.audio
-#    - gnuradio.blocks
-#    - gnuradio.channels
-##    - gnuradio.comedi
-#    - gnuradio.digital
-#    - gnuradio.dtv
-#    - gnuradio.fec
-#    - gnuradio.fft
-#    - gnuradio.filter
-#    - gnuradio.gr
-#    - gnuradio.qtgui
-#    - gnuradio.trellis
-#    - gnuradio.uhd
-##    - gnuradio.video_sdl
-#    - gnuradio.vocoder
-#    - gnuradio.wavelet
-#    - gnuradio.zeromq
-#    - pmt
+    - gnuradio.analog
+    # FIXME: re-enable audio test when it works for python 3
+    - gnuradio.audio  # [py2k]
+    - gnuradio.blocks
+    - gnuradio.channels
+#    - gnuradio.comedi
+    - gnuradio.digital
+    - gnuradio.dtv
+    - gnuradio.fec
+    - gnuradio.fft
+    - gnuradio.filter
+    - gnuradio.gr
+    - gnuradio.qtgui
+    - gnuradio.trellis
+    - gnuradio.uhd
+#    - gnuradio.video_sdl
+    - gnuradio.vocoder
+    - gnuradio.wavelet
+    - gnuradio.zeromq
+    - pmt
 
 about:
   home: http://gnuradio.org/

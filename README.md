@@ -29,7 +29,7 @@ Current build status
 
 [![Linux](https://img.shields.io/circleci/project/github/ryanvolz/gnuradio-feedstock/master.svg?label=Linux)](https://circleci.com/gh/ryanvolz/gnuradio-feedstock)
 [![OSX](https://img.shields.io/travis/ryanvolz/gnuradio-feedstock/master.svg?label=macOS)](https://travis-ci.org/ryanvolz/gnuradio-feedstock)
-![Windows disabled](https://img.shields.io/badge/Windows-disabled-lightgrey.svg)
+[![Windows](https://img.shields.io/appveyor/ci/ryanvolz/gnuradio-feedstock/master.svg?label=Windows)](https://ci.appveyor.com/project/ryanvolz/gnuradio-feedstock/branch/master)
 
 Current release info
 ====================

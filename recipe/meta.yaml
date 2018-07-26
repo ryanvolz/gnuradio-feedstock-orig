@@ -66,10 +66,10 @@ requirements:
   # gnuradio.comedi
     #- comedi  # [linux]
   # gnuradio companion
-    - gtk3
-    - lxml
-    - pygobject
-    - pyyaml
+    - gtk3  # [not win]
+    - lxml  # [not win]
+    - pygobject  # [not win]
+    - pyyaml  # [not win]
   # gnuradio ctrlport
     - thrift
     - thrift-cpp >=0.10,<0.11  # build errors with 0.11

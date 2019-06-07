@@ -1,10 +1,5 @@
 channels:
-  sources:
-  - conda-forge
-  - ryanvolz/label/prerelease
-  - ryanvolz
-  - pkgw-forge
-  - defaults
+  # only used for README generation, see recipe/conda_build_config.yaml
   targets:
   - [ryanvolz, prerelease]
 github:

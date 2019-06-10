@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# make builds with gcc>=5 compatible with conda-forge, currently using gcc<5
-CXXFLAGS="${CXXFLAGS} -D_GLIBCXX_USE_CXX11_ABI=0"
-
 # fix build with older gcc requiring STDC_LIMIT_MACROS
 CXXFLAGS="${CXXFLAGS} -D__STDC_LIMIT_MACROS"
 

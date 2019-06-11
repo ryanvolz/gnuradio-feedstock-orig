@@ -48,6 +48,7 @@ requirements:
     - libusb >=1
     - log4cpp
     - mako
+    - mpir
     - numpy
     - pkg-config  # [not win]
     - python
@@ -99,6 +100,7 @@ requirements:
     - {{ pin_compatible('fftw') }}
     - {{ pin_compatible('log4cpp') }}
     - mako
+    - mpir
     - numpy
     - python
     - six

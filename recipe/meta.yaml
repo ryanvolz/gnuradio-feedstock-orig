@@ -66,7 +66,7 @@ requirements:
     #- pygtk
   # gnuradio ctrlport
     - thrift
-    - thrift-cpp >=0.10,<0.11  # build errors with 0.11
+    - thrift-cpp
   # gnuradio.qtgui
     - pyqt
     - qt

@@ -1,5 +1,5 @@
-{% set hash = "53ddb74a315c800268ab83e0dc8f67bbcab54be8" %}
-{% set version = "3.8.0.0.dev1" %}
+{% set hash = "73b074f121b0ab2ac38336916a60891c4d88d2cb" %}
+{% set version = "3.8.0.0.dev2" %}
 
 package:
   name: gnuradio
@@ -11,7 +11,7 @@ source:
   git_rev: {{ hash }}
 
 build:
-  number: 1
+  number: 0
   skip: True  # [win and py2k]
   run_exports:
     - {{ pin_subpackage('gnuradio', min_pin='x.x.x', max_pin='x.x.x') }}

@@ -30,6 +30,7 @@ cmake -G "NMake Makefiles JOM" ^
     -DPYTHON_EXECUTABLE:PATH="%PYTHON%" ^
     -DGR_PYTHON_DIR:PATH="%PREFIX%\Lib\site-packages" ^
     -DPORTAUDIO_LIBRARIES="%LIBRARY_BIN%\libportaudio-2.dll" ^
+    -DQWT_LIBRARIES="%LIBRARY_LIB%\qwt.lib" ^
     -DENABLE_DOXYGEN=OFF ^
     -DENABLE_GNURADIO_RUNTIME=ON ^
     -DENABLE_GR_ANALOG=ON ^

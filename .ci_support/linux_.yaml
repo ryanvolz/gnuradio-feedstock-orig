@@ -1,17 +1,27 @@
 boost:
-- 1.67.0
+- 1.70.0
 boost_cpp:
-- 1.67.0
+- 1.70.0
 c_compiler:
-- toolchain_c
+- gcc
+c_compiler_version:
+- '7'
+channel_sources:
+- conda-forge,ryanvolz,defaults
+channel_targets:
+- ryanvolz main
 cxx_compiler:
-- toolchain_cxx
+- gxx
+cxx_compiler_version:
+- '7'
+docker_image:
+- condaforge/linux-anvil-comp7
 gsl:
-- '2.2'
+- '2.4'
 numpy:
-- '1.9'
+- '1.14'
 openblas:
-- 0.2.20
+- 0.3.3
 pin_run_as_build:
   boost:
     max_pin: x.x.x
@@ -21,8 +31,6 @@ pin_run_as_build:
     max_pin: x.x
   openblas:
     max_pin: x.x.x
-  pyqt:
-    max_pin: x.x
   python:
     min_pin: x.x
     max_pin: x.x
@@ -37,7 +45,4 @@ python:
 qt:
 - '4.8'
 zeromq:
-- 4.2.5
-zip_keys:
-- - pyqt
-  - qt
+- 4.3.1

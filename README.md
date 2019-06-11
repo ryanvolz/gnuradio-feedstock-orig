@@ -27,9 +27,48 @@ environment.
 Current build status
 ====================
 
-[![Linux](https://img.shields.io/circleci/project/github/ryanvolz/gnuradio-feedstock/master.svg?label=Linux)](https://circleci.com/gh/ryanvolz/gnuradio-feedstock)
-[![OSX](https://img.shields.io/travis/ryanvolz/gnuradio-feedstock/master.svg?label=macOS)](https://travis-ci.org/ryanvolz/gnuradio-feedstock)
-![Windows disabled](https://img.shields.io/badge/Windows-disabled-lightgrey.svg)
+
+<table>
+    
+  <tr>
+    <td>Azure</td>
+    <td>
+      <details>
+        <summary>
+          <a href="https://dev.azure.com/rvolz/feedstock-builds/_build/latest?definitionId=4&branchName=master">
+            <img src="https://dev.azure.com/rvolz/feedstock-builds/_apis/build/status/gnuradio-feedstock?branchName=master">
+          </a>
+        </summary>
+        <table>
+          <thead><tr><th>Variant</th><th>Status</th></tr></thead>
+          <tbody><tr>
+              <td>linux</td>
+              <td>
+                <a href="https://dev.azure.com/rvolz/feedstock-builds/_build/latest?definitionId=4&branchName=master">
+                  <img src="https://dev.azure.com/rvolz/feedstock-builds/_apis/build/status/gnuradio-feedstock?branchName=master&jobName=linux&configuration=linux_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx</td>
+              <td>
+                <a href="https://dev.azure.com/rvolz/feedstock-builds/_build/latest?definitionId=4&branchName=master">
+                  <img src="https://dev.azure.com/rvolz/feedstock-builds/_apis/build/status/gnuradio-feedstock?branchName=master&jobName=osx&configuration=osx_" alt="variant">
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+    </td>
+  </tr>
+  <tr>
+    <td>Windows</td>
+    <td>
+      <img src="https://img.shields.io/badge/Windows-disabled-lightgrey.svg" alt="Windows disabled">
+    </td>
+  </tr>
+![ppc64le disabled](https://img.shields.io/badge/ppc64le-disabled-lightgrey.svg)
+</table>
 
 Current release info
 ====================
@@ -79,7 +118,13 @@ build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
  * If the version of a package **is not** being increased, please add or increase
-   the [``build/number``](http://conda.pydata.org/docs/building/meta-yaml.html#build-number-and-string).
+   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string).
  * If the version of a package **is** being increased, please remember to return
-   the [``build/number``](http://conda.pydata.org/docs/building/meta-yaml.html#build-number-and-string)
+   the [``build/number``](https://conda.io/docs/user-guide/tasks/build-packages/define-metadata.html#build-number-and-string)
    back to 0.
+
+Feedstock Maintainers
+=====================
+
+* [@ryanvolz](https://github.com/ryanvolz/)
+

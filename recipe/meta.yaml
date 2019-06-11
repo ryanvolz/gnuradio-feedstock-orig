@@ -50,7 +50,7 @@ requirements:
     - mako
     - mpir
     - numpy
-    - pkg-config  # [not win]
+    - pkg-config  # [not (win and vc<14)]
     - python
     - six
     - swig

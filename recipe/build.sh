@@ -27,7 +27,7 @@ cmake -G "Ninja" \
     -DLIB_SUFFIX="" \
     -DPYTHON_EXECUTABLE=$PYTHON \
     -DGR_PYTHON_DIR=`$PYTHON -c "import site; print(site.getsitepackages()[0])"` \
-    -DQWT_LIBRARIES="$PREFIX/lib/libqwt.$SHLIB_EXT" \
+    -DQWT_LIBRARIES="$PREFIX/lib/libqwt$SHLIB_EXT" \
     -DENABLE_DOXYGEN=OFF \
     -DENABLE_GNURADIO_RUNTIME=ON \
     -DENABLE_GR_ANALOG=ON \

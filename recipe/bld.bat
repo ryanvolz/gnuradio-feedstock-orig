@@ -29,6 +29,8 @@ cmake -G "NMake Makefiles JOM" ^
     -DCMAKE_BUILD_TYPE:STRING=Release ^
     -DPYTHON_EXECUTABLE:PATH="%PYTHON%" ^
     -DGR_PYTHON_DIR:PATH="%PREFIX%\Lib\site-packages" ^
+    -DMPIR_LIBRARY="%LIBRARY_LIB%\mpir.lib" ^
+    -DMPIRXX_LIBRARY="%LIBRARY_LIB%\mpir.lib" ^
     -DPORTAUDIO_LIBRARIES="%LIBRARY_BIN%\libportaudio-2.dll" ^
     -DQWT_LIBRARIES="%LIBRARY_LIB%\qwt.lib" ^
     -DENABLE_DOXYGEN=OFF ^

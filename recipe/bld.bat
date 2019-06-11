@@ -28,8 +28,8 @@ cmake -G "NMake Makefiles JOM" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_BUILD_TYPE:STRING=Release ^
     -DPYTHON_EXECUTABLE:PATH="%PYTHON%" ^
-    -DGR_PYTHON_DIR:PATH="%PREFIX%"\Lib\site-packages ^
-    -DPORTAUDIO_LIBRARIES="%PREFIX%"\bin\libportaudio-2.dll ^
+    -DGR_PYTHON_DIR:PATH="%PREFIX%\Lib\site-packages" ^
+    -DPORTAUDIO_LIBRARIES="%LIBRARY_BIN%\libportaudio-2.dll" ^
     -DENABLE_DOXYGEN=OFF ^
     -DENABLE_GNURADIO_RUNTIME=ON ^
     -DENABLE_GR_ANALOG=ON ^

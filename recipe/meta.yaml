@@ -42,6 +42,7 @@ requirements:
 
   host:
     - boost-cpp
+    - click
     - fftw
     - libusb >=1
     - log4cpp
@@ -90,6 +91,7 @@ requirements:
 
   run:
     - boost-cpp
+    - click
     - {{ pin_compatible('fftw') }}
     - {{ pin_compatible('log4cpp') }}
     - mako

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# remove gnuradio's FindGSL.cmake to use cmake's version
-rm -f cmake/Modules/FindGSL.cmake
-
 mkdir build
 cd build
 # enable gnuradio components explicitly so we get build error when unsatisfied

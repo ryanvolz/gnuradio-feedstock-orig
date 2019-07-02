@@ -73,7 +73,7 @@ requirements:
     - pyyaml  # [not win]
   # gnuradio ctrlport
     - thrift
-    - thrift-cpp
+    - thrift-cpp <0.12
   # gnuradio.qtgui
     - pyqt
     - qt

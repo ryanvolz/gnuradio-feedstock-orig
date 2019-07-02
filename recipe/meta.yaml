@@ -1,5 +1,5 @@
-{% set hash = "73b074f121b0ab2ac38336916a60891c4d88d2cb" %}
-{% set version = "3.8.0.0.dev2" %}
+{% set hash = "ae93514658e8e54b2ad007ea56681c3b8d6dc441" %}
+{% set version = "3.8.0.0.dev3" %}
 
 package:
   name: gnuradio

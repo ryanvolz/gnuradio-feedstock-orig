@@ -81,8 +81,6 @@ requirements:
     - uhd
   # gnuradio.video_sdl
     #- sdl2
-  # gnuradio.wxgui
-    - wxpython
   # gnuradio.wavelet
     - gsl
   # gnuradio.zeromq
@@ -118,8 +116,6 @@ requirements:
     - {{ pin_compatible('qwt') }}
   # gnuradio.video_sdl
     #- {{ pin_compatible('sdl2') }}
-  # gnuradio.wxgui
-    - wxpython
   # gnuradio.wavelet
     - gsl
     # dep on openblas needed from linking with gsl because conda-forge gsl

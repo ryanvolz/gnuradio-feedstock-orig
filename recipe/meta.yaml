@@ -21,8 +21,7 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake >=3.2
-    - jom  # [win]
-    - ninja  # [unix]
+    - ninja
    # below are needed to link with Qt for qtgui
    # some may be unused because of proper conda packages that get pulled in
    # (e.g. by gtk3) but keep them here as backup for the time being

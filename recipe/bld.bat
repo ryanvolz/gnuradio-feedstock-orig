@@ -23,7 +23,7 @@ cd build
 ::   GR_WAVELET
 ::   GR_ZEROMQ
 ::   GRC
-cmake -G "NMake Makefiles JOM" ^
+cmake -G "Ninja" ^
     -DCMAKE_INSTALL_PREFIX:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_BUILD_TYPE:STRING=Release ^

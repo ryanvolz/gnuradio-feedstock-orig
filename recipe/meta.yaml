@@ -90,7 +90,6 @@ requirements:
     - zeromq
 
   run:
-    - boost-cpp
     - click
     - click-plugins
     - {{ pin_compatible('fftw') }}
@@ -116,7 +115,6 @@ requirements:
     #- {{ pin_compatible('thrift-cpp', max_pin='x.x.x') }}
   # gnuradio.qtgui
     - pyqt
-    - qt
     - {{ pin_compatible('qwt') }}
   # gnuradio.video_sdl
     #- {{ pin_compatible('sdl2') }}
@@ -128,7 +126,6 @@ requirements:
     #- openblas  # [not win]
   # gnuradio.zeromq
     - pyzmq
-    - zeromq
 
 test:
   commands:

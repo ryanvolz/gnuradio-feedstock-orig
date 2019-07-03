@@ -63,6 +63,7 @@ requirements:
     #- cppunit
   # gnuradio.audio
     - alsa-lib  # [linux]
+    - jack  # [linux]
     - portaudio  # [not osx]
   # gnuradio.comedi
     #- comedi  # [linux]

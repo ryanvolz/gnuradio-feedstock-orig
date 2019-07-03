@@ -63,7 +63,7 @@ cmake -G "Ninja" ^
 if errorlevel 1 exit 1
 
 :: build
-cmake --build .
+cmake --build . -- -j%CPU_COUNT%
 if errorlevel 1 exit 1
 
 :: install

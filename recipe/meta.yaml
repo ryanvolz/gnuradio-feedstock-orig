@@ -45,6 +45,7 @@ requirements:
     - click
     - click-plugins
     - fftw
+    - gsl
     - libusb >=1
     - log4cpp
     - mako
@@ -83,8 +84,6 @@ requirements:
     - uhd
   # gnuradio.video_sdl
     #- sdl2  # gnuradio depends on sdl 1
-  # gnuradio.wavelet
-    - gsl
   # gnuradio.zeromq
     - cppzmq
     - zeromq
@@ -118,12 +117,6 @@ requirements:
     - {{ pin_compatible('qwt') }}
   # gnuradio.video_sdl
     #- {{ pin_compatible('sdl2') }}
-  # gnuradio.wavelet
-    - gsl
-    # dep on openblas needed from linking with gsl because conda-forge gsl
-    # package replaces libgslcblas with link to libopenblas
-    # (to remove, check for gsl package update to include run_exports)
-    #- openblas  # [not win]
   # gnuradio.zeromq
     - pyzmq
 

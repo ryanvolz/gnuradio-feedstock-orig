@@ -46,11 +46,11 @@ cmake -G "Ninja" \
     -DENABLE_GR_VOCODER=ON \
     -DENABLE_GR_WAVELET=ON \
     -DENABLE_GR_ZEROMQ=ON \
-    -DENABLE_GRC=ON \
     -DENABLE_PYTHON=ON \
     -DENABLE_SPHINX=OFF \
     -DENABLE_TESTING=OFF \
     -DENABLE_INTERNAL_VOLK=OFF \
     ..
+#    -DENABLE_GRC=ON \
 cmake --build . -- -j $((${CPU_COUNT}+2))
 cmake --build . --target install

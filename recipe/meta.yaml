@@ -69,10 +69,10 @@ requirements:
   # gnuradio.comedi
     #- comedi  # [linux]
   # gnuradio companion
-    - gtk3  # [not win]
-    - lxml  # [not win]
-    - pygobject  # [not win]
-    - pyyaml  # [not win]
+    - gtk3  # [linux]
+    - lxml  # [linux]
+    - pygobject  # [linux]
+    - pyyaml  # [linux]
   # gnuradio ctrlport
     #- thrift
     #- thrift-cpp  # build fails with 0.11, 0.12
@@ -104,10 +104,10 @@ requirements:
   # gnuradio.comedi
     #- {{ pin_compatible('comedi') }}  # [linux]
   # gnuradio companion
-    - {{ pin_compatible('gtk3') }}  # [not win]
-    - lxml  # [not win]
-    - pygobject  # [not win]
-    - pyyaml  # [not win]
+    - {{ pin_compatible('gtk3') }}  # [linux]
+    - lxml  # [linux]
+    - pygobject  # [linux]
+    - pyyaml  # [linux]
   # gnuradio ctrlport
     #- thrift
   # gnuradio.qtgui

@@ -63,8 +63,8 @@ requirements:
     #- cppunit
   # gnuradio.audio
     - alsa-lib  # [linux]
-    - jack  # [linux]
-    - portaudio  # [not osx]
+    #- jack  # [linux]
+    - portaudio  # [linux]
   # gnuradio.comedi
     #- comedi  # [linux]
   # gnuradio companion
@@ -102,7 +102,8 @@ requirements:
     - six
   # gnuradio.audio
     - {{ pin_compatible('alsa-lib') }}  # [linux]
-    - {{ pin_compatible('portaudio') }}  # [not osx]
+    #- {{ pin_compatible('jack') }}  # [linux]
+    - {{ pin_compatible('portaudio') }}  # [linux]
   # gnuradio.comedi
     #- {{ pin_compatible('comedi') }}  # [linux]
   # gnuradio companion

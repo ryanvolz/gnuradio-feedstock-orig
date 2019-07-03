@@ -38,7 +38,7 @@ requirements:
     - {{ cdt('libxxf86vm') }}  # [linux]
     - {{ cdt('libuuid') }}  # [linux]
     - {{ cdt('mesa-dri-drivers') }}  # [linux]
-    - {{ cdt('mesa-libgl') }}  # [linux]
+    - {{ cdt('mesa-libgl-devel') }}  # [linux]
 
   host:
     - boost-cpp

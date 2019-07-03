@@ -124,7 +124,7 @@ requirements:
     # dep on openblas needed from linking with gsl because conda-forge gsl
     # package replaces libgslcblas with link to libopenblas
     # (to remove, check for gsl package update to include run_exports)
-    - openblas  # [not win]
+    #- openblas  # [not win]
   # gnuradio.zeromq
     - pyzmq
     - zeromq
@@ -136,8 +136,9 @@ test:
 
   imports:
     - gnuradio.analog
-    # FIXME: re-enable audio test when it works for python 3
-    - gnuradio.audio  # [py2k]
+    ##FIXME: re-enable audio test when it works for python 3
+    #- gnuradio.audio  # [py2k]
+    - gnuradio.audio
     - gnuradio.blocks
     - gnuradio.channels
 #    - gnuradio.comedi

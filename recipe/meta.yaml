@@ -94,7 +94,6 @@ requirements:
     - {{ pin_compatible('fftw') }}
     - {{ pin_compatible('log4cpp') }}
     - mako
-    - mpir
     - numpy
     - python
     - six
@@ -111,7 +110,6 @@ requirements:
     - pyyaml  # [not win]
   # gnuradio ctrlport
     #- thrift
-    #- {{ pin_compatible('thrift-cpp', max_pin='x.x.x') }}
   # gnuradio.qtgui
     - pyqt
     - {{ pin_compatible('qwt') }}

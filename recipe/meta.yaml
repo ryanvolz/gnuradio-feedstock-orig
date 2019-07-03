@@ -82,7 +82,7 @@ requirements:
   # gnuradio.uhd
     - uhd
   # gnuradio.video_sdl
-    #- sdl2
+    #- sdl2  # gnuradio depends on sdl 1
   # gnuradio.wavelet
     - gsl
   # gnuradio.zeromq

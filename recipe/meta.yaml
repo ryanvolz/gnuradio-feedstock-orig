@@ -9,6 +9,8 @@ package:
 source:
   git_url: https://github.com/gnuradio/gnuradio.git
   git_rev: {{ hash }}
+  patches:
+    - 0001-Remove-MP-compiler-flag.patch
 
 build:
   number: 0

@@ -23,6 +23,7 @@ cmake -G "Ninja" \
     -DCMAKE_INSTALL_PREFIX=$PREFIX \
     -DLIB_SUFFIX="" \
     -DPYTHON_EXECUTABLE=$PYTHON \
+    -DBoost_NO_BOOST_CMAKE=ON \
     -DGR_PYTHON_DIR=`$PYTHON -c "import site; print(site.getsitepackages()[0])"` \
     -DQWT_LIBRARIES="$PREFIX/lib/libqwt$SHLIB_EXT" \
     -DENABLE_DOXYGEN=OFF \

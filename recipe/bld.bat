@@ -28,6 +28,7 @@ cmake -G "Ninja" ^
     -DCMAKE_PREFIX_PATH:PATH="%LIBRARY_PREFIX%" ^
     -DCMAKE_BUILD_TYPE:STRING=Release ^
     -DPYTHON_EXECUTABLE:PATH="%PYTHON%" ^
+    -DBoost_NO_BOOST_CMAKE=ON ^
     -DGR_PYTHON_DIR:PATH="%PREFIX%\Lib\site-packages" ^
     -DMPIR_LIBRARY="%LIBRARY_LIB%\mpir.lib" ^
     -DMPIRXX_LIBRARY="%LIBRARY_LIB%\mpir.lib" ^

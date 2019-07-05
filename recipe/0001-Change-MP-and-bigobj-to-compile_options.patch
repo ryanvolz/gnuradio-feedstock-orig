@@ -1,0 +1,28 @@
+From 32678c04fd442f7a4889001855ff501c14b939bf Mon Sep 17 00:00:00 2001
+From: Ryan Volz <rvolz@mit.edu>
+Date: Fri, 5 Jul 2019 16:36:15 -0400
+Subject: [PATCH] Change /MP and /bigobj to compile_options for Ninja
+ compatibility.
+
+---
+ CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 635af100d..24047a776 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -216,8 +216,8 @@ if(MSVC)
+         -D_CRT_NONSTDC_NO_DEPRECATE
+     )
+     add_definitions(-DHAVE_CONFIG_H)
+-    add_definitions(/MP) #build with multiple processors
+-    add_definitions(/bigobj) #allow for larger object files
++    add_compile_options(/MP) #build with multiple processors
++    add_compile_options(/bigobj) #allow for larger object files
+ endif(MSVC)
+ 
+ if(WIN32)
+-- 
+2.20.1
+

@@ -11,9 +11,10 @@ source:
   git_rev: {{ hash }}
   patches:
     - 0001-Change-MP-and-bigobj-to-compile_options.patch
+    - 0001-Use-raw-strings-for-paths.patch
 
 build:
-  number: 0
+  number: 1
   skip: True  # [win and py2k]
   run_exports:
     - {{ pin_subpackage('gnuradio', min_pin='x.x.x', max_pin='x.x.x') }}

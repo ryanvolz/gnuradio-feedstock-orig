@@ -91,6 +91,7 @@ requirements:
     - zeromq
 
   run:
+    - boost-cpp
     - click
     - click-plugins
     - {{ pin_compatible('fftw') }}

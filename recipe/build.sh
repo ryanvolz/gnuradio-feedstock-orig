@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# fix build when compiling with pre-C++11 standard
+CXXFLAGS="${CXXFLAGS} -D__STDC_LIMIT_MACROS"
+
 # remove gnuradio's FindGSL.cmake to use cmake's version
 rm -f cmake/Modules/FindGSL.cmake
 

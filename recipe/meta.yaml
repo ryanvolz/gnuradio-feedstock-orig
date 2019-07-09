@@ -38,7 +38,6 @@ requirements:
     - {{ cdt('mesa-libgl') }}  # [linux]
 
   host:
-    - boost
     - boost-cpp
     - cheetah
     - fftw
@@ -83,7 +82,6 @@ requirements:
     - zeromq
 
   run:
-    - boost
     - boost-cpp
     - cheetah
     - {{ pin_compatible('fftw') }}

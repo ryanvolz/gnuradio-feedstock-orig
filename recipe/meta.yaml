@@ -65,8 +65,8 @@ requirements:
     - lxml
     #- pygtk
   # gnuradio ctrlport
-    - thrift
-    - thrift-cpp
+    #- thrift
+    #- thrift-cpp
   # gnuradio.qtgui
     #- pyqt
     #- qt
@@ -98,8 +98,8 @@ requirements:
     #- lxml
     #- pygtk
   # gnuradio ctrlport
-    - thrift
-    - {{ pin_compatible('thrift-cpp', max_pin='x.x.x') }}
+    #- thrift
+    #- {{ pin_compatible('thrift-cpp', max_pin='x.x.x') }}
   # gnuradio.qtgui
     #- pyqt
     #- qt

@@ -7,6 +7,8 @@ package:
 source:
   url: https://github.com/gnuradio/gnuradio/releases/download/v{{ version }}/gnuradio-{{ version }}.tar.gz
   sha256: f14e1f8efbcbe04336b6981da207ada3306a8f08af2c0b4e9bb6f8b93036bbb9
+  patches:
+    - 0001-blocks-simple-fix-for-Boost-1.70.0-in-socket_pdu.patch
 
 build:
   number: 0

@@ -11,6 +11,7 @@ cd build
 #   TESTING because we don't intend to run the unit tests, just import test
 #   GR_COMEDI needs comedi
 #   GR_FCD has libiconv linker error
+#   GR_QTGUI needs Qt4 with Qwt>=5.2,<=6.2.0 (cf Qwt not built against Qt4)
 #   GR_VIDEO_SDL needs sdl1 (conda-forge has sdl2)
 #   GRC needs pygtk
 # the following can be disabled to speed up the build (dependencies remain in
@@ -47,7 +48,7 @@ cmake -G "Ninja" \
     -DENABLE_GR_FILTER=ON \
     -DENABLE_GR_NOAA=ON \
     -DENABLE_GR_PAGER=ON \
-    -DENABLE_GR_QTGUI=ON \
+    -DENABLE_GR_QTGUI=OFF \
     -DENABLE_GR_TRELLIS=ON \
     -DENABLE_GR_UHD=ON \
     -DENABLE_GR_UTILS=ON \

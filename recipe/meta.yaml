@@ -42,6 +42,7 @@ requirements:
     - boost-cpp
     - cheetah
     - fftw
+    - gsl
     - libusb >=1
     - log4cpp
     #- mako >=0.4.2  # will be required to replace Cheetah in an upcoming version
@@ -77,12 +78,6 @@ requirements:
     #- sdl2
   # gnuradio.wxgui
     - wxpython
-  # gnuradio.wavelet
-    - gsl
-    # dep on openblas needed from linking with gsl because conda-forge gsl
-    # package replaces libgslcblas with link to libopenblas
-    # (to remove, check for gsl package update to include run_exports)
-    - openblas  # [not win]
   # gnuradio.zeromq
     - cppzmq
     - zeromq
@@ -115,12 +110,6 @@ requirements:
     #- {{ pin_compatible('sdl2') }}
   # gnuradio.wxgui
     - wxpython
-  # gnuradio.wavelet
-    - gsl
-    # dep on openblas needed from linking with gsl because conda-forge gsl
-    # package replaces libgslcblas with link to libopenblas
-    # (to remove, check for gsl package update to include run_exports)
-    - openblas  # [not win]
   # gnuradio.zeromq
     - pyzmq
     - zeromq

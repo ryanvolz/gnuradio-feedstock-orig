@@ -1,4 +1,4 @@
-From 0b93f7728b30dca6bef89e0bd5432a868cdf3f4c Mon Sep 17 00:00:00 2001
+From 1b13095a87ce8793357d7d78052c441671d41427 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
 Date: Wed, 10 Jul 2019 15:19:12 -0400
 Subject: [PATCH 1/2] Fix path constants for relocatable binary string
@@ -10,16 +10,18 @@ excess characters filled with null characters '\x00'. Because the
 path strings were then optimized to have a fixed size (255), they
 would include all of the null characters and not function correctly,
 preventing default configuration files from being loaded. This change
-makes the default path strings non-constant so that their length is
-calculated at runtime upon return by locating the first NULL character.
+makes the default path strings go through a c_str conversion so that
+their length is calculated at runtime upon return by locating the first
+NULL character.
 
-See https://github.com/conda/conda-build/issues/2524
+See https://github.com/conda/conda-build/issues/1674
+and https://github.com/conda/conda-build/issues/2524
 ---
  gnuradio-runtime/lib/constants.cc.in | 12 +++++++++---
  1 file changed, 9 insertions(+), 3 deletions(-)
 
 diff --git a/gnuradio-runtime/lib/constants.cc.in b/gnuradio-runtime/lib/constants.cc.in
-index b368e9dc3..f73265739 100644
+index b368e9dc3..33a2285ac 100644
 --- a/gnuradio-runtime/lib/constants.cc.in
 +++ b/gnuradio-runtime/lib/constants.cc.in
 @@ -36,7 +36,9 @@ namespace gr {
@@ -27,9 +29,9 @@ index b368e9dc3..f73265739 100644
      if (prefix != NULL) return prefix;
  
 -    return "@prefix@";
-+    //not const so size is recalculated after relocatable string replacement
++    //go through c_str to recreate after relocatable string replacement
 +    std::string default_prefix = "@prefix@";
-+    return default_prefix;
++    return default_prefix.c_str();
    }
  
    const std::string
@@ -38,9 +40,9 @@ index b368e9dc3..f73265739 100644
      }
  
 -    return "@SYSCONFDIR@";
-+    //not const so size is recalculated after relocatable string replacement
++    //go through c_str to recreate after relocatable string replacement
 +    std::string default_sysconfdir = "@SYSCONFDIR@";
-+    return default_sysconfdir;
++    return default_sysconfdir.c_str();
    }
  
    const std::string
@@ -49,9 +51,9 @@ index b368e9dc3..f73265739 100644
      }
  
 -    return "@GR_PREFSDIR@";
-+    //not const so size is recalculated after relocatable string replacement
++    //go through c_str to recreate after relocatable string replacement
 +    std::string default_prefsdir = "@GR_PREFSDIR@";
-+    return default_prefsdir;
++    return default_prefsdir.c_str();
    }
  
    const std::string

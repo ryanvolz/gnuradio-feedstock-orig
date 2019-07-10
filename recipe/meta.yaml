@@ -16,7 +16,7 @@ source:
     - 0002-Fix-potential-Unicode-mangling-of-constant-path-stri.patch
 
 build:
-  number: 2
+  number: 4
   skip: True  # [win and py2k]
   run_exports:
     - {{ pin_subpackage('gnuradio', min_pin='x.x.x', max_pin='x.x.x') }}

@@ -1,0 +1,35 @@
+From b9da7da04daf0c30b7c2888f6fb677a8b046ae46 Mon Sep 17 00:00:00 2001
+From: Ryan Volz <rvolz@mit.edu>
+Date: Wed, 10 Jul 2019 15:24:10 -0400
+Subject: [PATCH 2/2] Fix potential Unicode mangling of constant path strings
+ on Windows.
+
+By using native paths in CMake, the default paths substituted into
+constants.cc.in could be mangled on Windows because of inadvertent
+Unicode characters (\U). This changes them back to cmake paths with
+forward slashes which prevents mangling and allows relocatable string
+substitution as with conda build and install.
+---
+ gnuradio-runtime/lib/CMakeLists.txt | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/gnuradio-runtime/lib/CMakeLists.txt b/gnuradio-runtime/lib/CMakeLists.txt
+index 5aa90a5e1..342b09095 100644
+--- a/gnuradio-runtime/lib/CMakeLists.txt
++++ b/gnuradio-runtime/lib/CMakeLists.txt
+@@ -31,9 +31,9 @@ message(STATUS "Loading build date ${BUILD_DATE} into constants...")
+ message(STATUS "Loading version ${VERSION} into constants...")
+ 
+ #double escape for windows backslash path separators
+-string(REPLACE "\\" "\\\\" prefix "${prefix}")
+-string(REPLACE "\\" "\\\\" SYSCONFDIR "${SYSCONFDIR}")
+-string(REPLACE "\\" "\\\\" GR_PREFSDIR "${GR_PREFSDIR}")
++file(TO_NATIVE_PATH "${prefix}" prefix)
++file(TO_NATIVE_PATH "${SYSCONFDIR}" SYSCONFDIR)
++file(TO_NATIVE_PATH "${GR_PREFSDIR}" GR_PREFSDIR)
+ 
+ 
+ #########################################################################
+-- 
+2.20.1
+

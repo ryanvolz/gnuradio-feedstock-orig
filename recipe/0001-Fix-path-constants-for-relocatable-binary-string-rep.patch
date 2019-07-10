@@ -1,0 +1,60 @@
+From 0b93f7728b30dca6bef89e0bd5432a868cdf3f4c Mon Sep 17 00:00:00 2001
+From: Ryan Volz <rvolz@mit.edu>
+Date: Wed, 10 Jul 2019 15:19:12 -0400
+Subject: [PATCH 1/2] Fix path constants for relocatable binary string
+ replacement.
+
+With conda-build, these paths are padded to a size of 255 bytes to allow
+the installation path to be substituted in at package install time, with
+excess characters filled with null characters '\x00'. Because the
+path strings were then optimized to have a fixed size (255), they
+would include all of the null characters and not function correctly,
+preventing default configuration files from being loaded. This change
+makes the default path strings non-constant so that their length is
+calculated at runtime upon return by locating the first NULL character.
+
+See https://github.com/conda/conda-build/issues/2524
+---
+ gnuradio-runtime/lib/constants.cc.in | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
+
+diff --git a/gnuradio-runtime/lib/constants.cc.in b/gnuradio-runtime/lib/constants.cc.in
+index b368e9dc3..f73265739 100644
+--- a/gnuradio-runtime/lib/constants.cc.in
++++ b/gnuradio-runtime/lib/constants.cc.in
+@@ -36,7 +36,9 @@ namespace gr {
+     const char *prefix = getenv("GR_PREFIX");
+     if (prefix != NULL) return prefix;
+ 
+-    return "@prefix@";
++    //not const so size is recalculated after relocatable string replacement
++    std::string default_prefix = "@prefix@";
++    return default_prefix;
+   }
+ 
+   const std::string
+@@ -49,7 +51,9 @@ namespace gr {
+       return prefix() + "/@GR_CONF_DIR@";
+     }
+ 
+-    return "@SYSCONFDIR@";
++    //not const so size is recalculated after relocatable string replacement
++    std::string default_sysconfdir = "@SYSCONFDIR@";
++    return default_sysconfdir;
+   }
+ 
+   const std::string
+@@ -62,7 +66,9 @@ namespace gr {
+       return sysconfdir() + "/@CMAKE_PROJECT_NAME@/conf.d";
+     }
+ 
+-    return "@GR_PREFSDIR@";
++    //not const so size is recalculated after relocatable string replacement
++    std::string default_prefsdir = "@GR_PREFSDIR@";
++    return default_prefsdir;
+   }
+ 
+   const std::string
+-- 
+2.20.1
+

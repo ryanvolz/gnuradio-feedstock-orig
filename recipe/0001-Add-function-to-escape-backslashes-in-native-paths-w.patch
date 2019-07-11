@@ -1,0 +1,134 @@
+From abf9d8e3ca600a2676a45da4e52492131c4a7aed Mon Sep 17 00:00:00 2001
+From: Ryan Volz <rvolz@mit.edu>
+Date: Thu, 11 Jul 2019 17:04:49 -0400
+Subject: [PATCH] Add function to escape backslashes in native paths where
+ needed.
+
+On Windows, paths without escaped backslashes can cause the lone
+backslash to be interpreted as an escape character, corrupting the path.
+This adds a function that can be used in place of file(TO_NATIVE_PATH)
+that additionally escapes backslashes, and it changes certain instances
+of file(TO_NATIVE_PATH) to GR_ESCAPED_NATIVE_PATH() where needed to
+avoid path corruption.
+---
+ CMakeLists.txt                         | 12 ++++++------
+ cmake/Modules/GrMiscUtils.cmake        | 11 ++++++++++-
+ gnuradio-runtime/lib/CMakeLists.txt    |  4 ----
+ gr-utils/python/modtool/CMakeLists.txt |  2 +-
+ grc/CMakeLists.txt                     | 13 ++++---------
+ 5 files changed, 21 insertions(+), 21 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 635af100d..51bc31417 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -306,12 +306,12 @@ endif(ENABLE_PERFORMANCE_COUNTERS)
+ ########################################################################
+ # Variables replaced when configuring the package config files
+ ########################################################################
+-file(TO_NATIVE_PATH "${CMAKE_INSTALL_PREFIX}"           prefix)
+-file(TO_NATIVE_PATH "\${prefix}"                        exec_prefix)
+-file(TO_NATIVE_PATH "\${exec_prefix}/${GR_LIBRARY_DIR}" libdir)
+-file(TO_NATIVE_PATH "\${prefix}/${GR_INCLUDE_DIR}"      includedir)
+-file(TO_NATIVE_PATH "${SYSCONFDIR}"                     SYSCONFDIR)
+-file(TO_NATIVE_PATH "${GR_PREFSDIR}"                    GR_PREFSDIR)
++GR_ESCAPED_NATIVE_PATH("${CMAKE_INSTALL_PREFIX}"           prefix)
++GR_ESCAPED_NATIVE_PATH("\${prefix}"                        exec_prefix)
++GR_ESCAPED_NATIVE_PATH("\${exec_prefix}/${GR_LIBRARY_DIR}" libdir)
++GR_ESCAPED_NATIVE_PATH("\${prefix}/${GR_INCLUDE_DIR}"      includedir)
++GR_ESCAPED_NATIVE_PATH("${SYSCONFDIR}"                     SYSCONFDIR)
++GR_ESCAPED_NATIVE_PATH("${GR_PREFSDIR}"                    GR_PREFSDIR)
+ 
+ ########################################################################
+ # On Apple only, set install name and use rpath correctly, if not already set
+diff --git a/cmake/Modules/GrMiscUtils.cmake b/cmake/Modules/GrMiscUtils.cmake
+index 853afaa8e..8ca16d905 100644
+--- a/cmake/Modules/GrMiscUtils.cmake
++++ b/cmake/Modules/GrMiscUtils.cmake
+@@ -134,6 +134,15 @@ function(GR_GEN_TARGET_DEPS name var)
+     endif()
+ endfunction(GR_GEN_TARGET_DEPS)
+ 
++########################################################################
++# Convert a path string into a native path, also escaping backslashes.
++########################################################################
++function(GR_ESCAPED_NATIVE_PATH path var)
++    file(TO_NATIVE_PATH "${path}" native_path)
++    string(REPLACE "\\" "\\\\" safe_path "${native_path}")
++    set(${var} "${safe_path}" PARENT_SCOPE)
++endfunction(GR_ESCAPED_NATIVE_PATH)
++
+ ########################################################################
+ # Run GRCC to compile .grc files into .py files.
+ #
+@@ -173,7 +182,7 @@ function(GRCC)
+     endforeach(pydir)
+   endif(WIN32)
+ 
+-  file(TO_NATIVE_PATH "${PYTHONPATHS}" pypath)
++  GR_ESCAPED_NATIVE_PATH("${PYTHONPATHS}" pypath)
+ 
+   if(UNIX)
+     list(APPEND pypath "$PYTHONPATH")
+diff --git a/gnuradio-runtime/lib/CMakeLists.txt b/gnuradio-runtime/lib/CMakeLists.txt
+index 5aa90a5e1..b5086042c 100644
+--- a/gnuradio-runtime/lib/CMakeLists.txt
++++ b/gnuradio-runtime/lib/CMakeLists.txt
+@@ -30,10 +30,6 @@ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c
+ message(STATUS "Loading build date ${BUILD_DATE} into constants...")
+ message(STATUS "Loading version ${VERSION} into constants...")
+ 
+-#double escape for windows backslash path separators
+-string(REPLACE "\\" "\\\\" prefix "${prefix}")
+-string(REPLACE "\\" "\\\\" SYSCONFDIR "${SYSCONFDIR}")
+-string(REPLACE "\\" "\\\\" GR_PREFSDIR "${GR_PREFSDIR}")
+ 
+ 
+ #########################################################################
+diff --git a/gr-utils/python/modtool/CMakeLists.txt b/gr-utils/python/modtool/CMakeLists.txt
+index 70fdabeda..af6836ed0 100644
+--- a/gr-utils/python/modtool/CMakeLists.txt
++++ b/gr-utils/python/modtool/CMakeLists.txt
+@@ -42,7 +42,7 @@ set(GR_PKG_MODTOOL_DATA_DIR ${GR_PKG_DATA_DIR}/modtool/templates)
+ ########################################################################
+ # Create and install the modtool conf file
+ ########################################################################
+-file(TO_NATIVE_PATH ${CMAKE_INSTALL_PREFIX}/${GR_PKG_MODTOOL_DATA_DIR}/gr-newmod newmoddir)
++GR_ESCAPED_NATIVE_PATH(${CMAKE_INSTALL_PREFIX}/${GR_PKG_MODTOOL_DATA_DIR}/gr-newmod newmoddir)
+ 
+ configure_file(
+     ${CMAKE_CURRENT_SOURCE_DIR}/modtool.conf.in
+diff --git a/grc/CMakeLists.txt b/grc/CMakeLists.txt
+index 0724c8dc5..e8824c54c 100644
+--- a/grc/CMakeLists.txt
++++ b/grc/CMakeLists.txt
+@@ -103,7 +103,7 @@ if(ENABLE_GRC)
+ ########################################################################
+ # Create and install the grc conf file
+ ########################################################################
+-file(TO_NATIVE_PATH ${CMAKE_INSTALL_PREFIX}/${GRC_BLOCKS_DIR} blocksdir)
++GR_ESCAPED_NATIVE_PATH(${CMAKE_INSTALL_PREFIX}/${GRC_BLOCKS_DIR} blocksdir)
+ if(CMAKE_INSTALL_PREFIX STREQUAL "/usr")
+     # linux binary installs: append blocks dir with prefix /usr/local
+     set(blocksdir ${blocksdir}:/usr/local/${GRC_BLOCKS_DIR})
+@@ -164,14 +164,9 @@ GR_PYTHON_INSTALL(
+ ########################################################################
+ if(WIN32)
+ 
+-file(TO_NATIVE_PATH ${GR_PKG_DOC_DIR} GR_DOC_DIR)
+-string(REPLACE "\\" "\\\\" GR_DOC_DIR ${GR_DOC_DIR})
+-
+-file(TO_NATIVE_PATH ${GRC_BLOCKS_DIR} GRC_BLOCKS_PATH)
+-string(REPLACE "\\" "\\\\" GRC_BLOCKS_PATH ${GRC_BLOCKS_PATH})
+-
+-file(TO_NATIVE_PATH ${GR_PYTHON_DIR} GR_PYTHON_POSTFIX)
+-string(REPLACE "\\" "\\\\" GR_PYTHON_POSTFIX ${GR_PYTHON_POSTFIX})
++GR_ESCAPED_NATIVE_PATH(${GR_PKG_DOC_DIR} GR_DOC_DIR)
++GR_ESCAPED_NATIVE_PATH(${GRC_BLOCKS_DIR} GRC_BLOCKS_PATH)
++GR_ESCAPED_NATIVE_PATH(${GR_PYTHON_DIR} GR_PYTHON_POSTFIX)
+ 
+ endif(WIN32)
+ 
+-- 
+2.20.1
+

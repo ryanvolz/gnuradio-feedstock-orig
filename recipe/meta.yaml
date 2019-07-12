@@ -12,11 +12,10 @@ source:
   patches:
     - 0001-Change-MP-and-bigobj-to-compile_options.patch
     - 0001-Use-raw-strings-for-paths.patch
-    - 0001-Fix-path-constants-for-relocatable-binary-string-rep.patch
-    - 0001-Add-function-to-escape-backslashes-in-native-paths-w.patch
+    - 0001-Don-t-use-hard-coded-path-constants.patch
 
 build:
-  number: 5
+  number: 6
   skip: True  # [win and py2k]
   run_exports:
     - {{ pin_subpackage('gnuradio', min_pin='x.x.x', max_pin='x.x.x') }}

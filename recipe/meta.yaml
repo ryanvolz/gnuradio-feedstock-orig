@@ -129,25 +129,25 @@ test:
     - conda inspect objects -p $PREFIX gnuradio  # [osx]
 
   imports:
-    - gnuradio.analog  # [not osx]
-    - gnuradio.audio  # [not osx]
-    - gnuradio.blocks  # [not osx]
-    - gnuradio.channels  # [not osx]
+    - gnuradio.analog
+    - gnuradio.audio
+    - gnuradio.blocks
+    - gnuradio.channels
 #    - gnuradio.comedi
-    - gnuradio.digital  # [not osx]
-    - gnuradio.dtv  # [not osx]
-    - gnuradio.fec  # [not osx]
-    - gnuradio.fft  # [not osx]
-    - gnuradio.filter  # [not osx]
-    - gnuradio.gr  # [not osx]
-    - gnuradio.qtgui  # [not osx]
-    - gnuradio.trellis  # [not osx]
-    - gnuradio.uhd  # [not osx]
+    - gnuradio.digital
+    - gnuradio.dtv
+    - gnuradio.fec
+    - gnuradio.fft
+    - gnuradio.filter
+    - gnuradio.gr
+    - gnuradio.qtgui
+    - gnuradio.trellis
+    - gnuradio.uhd
 #    - gnuradio.video_sdl
-    - gnuradio.vocoder  # [not osx]
-    - gnuradio.wavelet  # [not osx]
-    - gnuradio.zeromq  # [not osx]
-    - pmt  # [not osx]
+    - gnuradio.vocoder
+    - gnuradio.wavelet
+    - gnuradio.zeromq
+    - pmt
 
 about:
   home: http://gnuradio.org/

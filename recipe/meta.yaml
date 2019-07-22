@@ -70,8 +70,6 @@ requirements:
     - alsa-lib  # [linux]
     #- jack  # [linux]
     - portaudio  # [linux]
-  # gnuradio.comedi
-    #- comedi  # [linux]
   # gnuradio companion
     - gtk3  # [linux]
     - lxml  # [linux]
@@ -106,8 +104,6 @@ requirements:
     - {{ pin_compatible('alsa-lib') }}  # [linux]
     #- {{ pin_compatible('jack') }}  # [linux]
     - {{ pin_compatible('portaudio') }}  # [linux]
-  # gnuradio.comedi
-    #- {{ pin_compatible('comedi') }}  # [linux]
   # gnuradio companion
     - {{ pin_compatible('gtk3') }}  # [linux]
     - lxml  # [linux]
@@ -133,7 +129,6 @@ test:
     - gnuradio.audio
     - gnuradio.blocks
     - gnuradio.channels
-#    - gnuradio.comedi
     - gnuradio.digital
     - gnuradio.dtv
     - gnuradio.fec

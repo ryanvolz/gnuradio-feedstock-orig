@@ -9,7 +9,6 @@ cd build
 :: the following are disabled:
 ::   DOXYGEN/SPHINX because we don't need docs in the conda package
 ::   TESTING because we don't intend to run the unit tests, just import test
-::   GR_COMEDI needs comedi
 ::   GR_VIDEO_SDL needs sdl1 (conda-forge has sdl2)
 ::   GRC (no gtk3 for conda on Windows)
 :: the following can be disabled to speed up the build (dependencies remain in
@@ -39,7 +38,6 @@ cmake -G "Ninja" ^
     -DENABLE_GR_ANALOG=ON ^
     -DENABLE_GR_AUDIO=ON ^
     -DENABLE_GR_BLOCKS=ON ^
-    -DENABLE_GR_COMEDI=OFF ^
     -DENABLE_GR_CHANNELS=ON ^
     -DENABLE_GR_CTRLPORT=ON ^
     -DENABLE_GR_DIGITAL=ON ^

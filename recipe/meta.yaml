@@ -1,5 +1,5 @@
-{% set hash = "ae93514658e8e54b2ad007ea56681c3b8d6dc441" %}
-{% set version = "3.8.0.0.dev3" %}
+{% set hash = "c57004b61d8dac8958995b535a225b81d2b12a3d" %}
+{% set version = "3.8.0.0rc2" %}
 
 package:
   name: gnuradio
@@ -15,7 +15,7 @@ source:
     - 0001-Don-t-use-hard-coded-path-constants.patch
 
 build:
-  number: 6
+  number: 0
   skip: True  # [win and py2k]
   run_exports:
     - {{ pin_subpackage('gnuradio', min_pin='x.x.x', max_pin='x.x.x') }}

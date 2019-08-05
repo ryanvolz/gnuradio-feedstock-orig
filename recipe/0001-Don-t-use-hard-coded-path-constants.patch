@@ -1,6 +1,6 @@
-From 7b64e87ba1a4c14e6439ee2b4f15bec5a1449ce2 Mon Sep 17 00:00:00 2001
+From 5c7a3cc2be6b578652d64e4f2e52550dd6ca648c Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
-Date: Fri, 12 Jul 2019 14:38:57 -0400
+Date: Mon, 5 Aug 2019 10:50:55 -0400
 Subject: [PATCH] Don't use hard-coded path constants.
 
 This replaces the path constants for the prefix, system configuration,
@@ -14,14 +14,14 @@ it's just easier to use them from the start.
 ---
  CMakeLists.txt                       | 20 +++++++++++-----
  gnuradio-runtime/lib/CMakeLists.txt  |  4 ----
- gnuradio-runtime/lib/constants.cc.in | 35 ++++++++++++++--------------
- 3 files changed, 32 insertions(+), 27 deletions(-)
+ gnuradio-runtime/lib/constants.cc.in | 36 +++++++++++++++-------------
+ 3 files changed, 33 insertions(+), 27 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 635af100d..a101dd733 100644
+index 404e3be9f..e6f19581c 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -306,12 +306,20 @@ endif(ENABLE_PERFORMANCE_COUNTERS)
+@@ -309,12 +309,20 @@ endif(ENABLE_PERFORMANCE_COUNTERS)
  ########################################################################
  # Variables replaced when configuring the package config files
  ########################################################################
@@ -64,18 +64,19 @@ index 5aa90a5e1..b5086042c 100644
  
  #########################################################################
 diff --git a/gnuradio-runtime/lib/constants.cc.in b/gnuradio-runtime/lib/constants.cc.in
-index b368e9dc3..883d9a6b6 100644
+index b368e9dc3..970c73996 100644
 --- a/gnuradio-runtime/lib/constants.cc.in
 +++ b/gnuradio-runtime/lib/constants.cc.in
-@@ -26,6 +26,7 @@
+@@ -26,6 +26,8 @@
  
  #include <stdlib.h>
  #include <gnuradio/constants.h>
-+#include <boost/dll.hpp>
++#include <boost/dll/config.hpp>
++#include <boost/dll/runtime_symbol_info.hpp>
  
  namespace gr {
  
-@@ -36,33 +37,33 @@ namespace gr {
+@@ -36,33 +38,33 @@ namespace gr {
      const char *prefix = getenv("GR_PREFIX");
      if (prefix != NULL) return prefix;
  

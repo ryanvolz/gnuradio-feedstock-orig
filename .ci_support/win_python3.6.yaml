@@ -3,9 +3,9 @@ boost_cpp:
 c_compiler:
 - vs2015
 channel_sources:
-- conda-forge,ryanvolz/label/prerelease,ryanvolz,pkgw-forge,defaults
+- conda-forge,ryanvolz,pkgw-forge,defaults
 channel_targets:
-- ryanvolz prerelease
+- ryanvolz master
 cxx_compiler:
 - vs2015
 gsl:
@@ -20,20 +20,15 @@ pin_run_as_build:
     max_pin: x.x
   qt:
     max_pin: x.x
-  vc:
-    max_pin: x
   zeromq:
-    max_pin: x.x
+    max_pin: x.x.x
 python:
 - '3.6'
 qt:
-- '5.9'
-vc:
-- '14'
+- '5.12'
 zeromq:
-- 4.3.1
+- 4.3.2
 zip_keys:
 - - python
-  - vc
   - c_compiler
   - cxx_compiler

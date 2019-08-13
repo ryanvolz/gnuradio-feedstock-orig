@@ -8,3 +8,6 @@ channel_sources:
 
 channel_targets:
   - ryanvolz main
+
+qt:
+- 5.9

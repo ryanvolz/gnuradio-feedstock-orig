@@ -7,7 +7,7 @@ c_compiler_version:
 channel_sources:
 - conda-forge,ryanvolz,pkgw-forge,defaults
 channel_targets:
-- ryanvolz master
+- ryanvolz main
 cxx_compiler:
 - gxx
 cxx_compiler_version:
@@ -31,6 +31,6 @@ pin_run_as_build:
 python:
 - '3.6'
 qt:
-- '5.12'
+- '5.9'
 zeromq:
 - 4.3.2

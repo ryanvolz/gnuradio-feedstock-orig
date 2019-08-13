@@ -4,7 +4,7 @@ cxx_compiler:  # [win]
 - vs2015  # [win]
 
 channel_sources:
-  - conda-forge,ryanvolz/label/prerelease,ryanvolz,pkgw-forge,defaults
+  - conda-forge,ryanvolz,pkgw-forge,defaults
 
 channel_targets:
-  - ryanvolz prerelease
+  - ryanvolz master

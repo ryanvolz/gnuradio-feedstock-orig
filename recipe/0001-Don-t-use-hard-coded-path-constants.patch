@@ -1,6 +1,6 @@
-From 5c7a3cc2be6b578652d64e4f2e52550dd6ca648c Mon Sep 17 00:00:00 2001
+From d213a438da1cae9870737d458039eec0a558fc1c Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
-Date: Mon, 5 Aug 2019 10:50:55 -0400
+Date: Mon, 5 Aug 2019 11:06:13 -0400
 Subject: [PATCH] Don't use hard-coded path constants.
 
 This replaces the path constants for the prefix, system configuration,
@@ -18,7 +18,7 @@ it's just easier to use them from the start.
  3 files changed, 33 insertions(+), 27 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 404e3be9f..e6f19581c 100644
+index 059575563..8184c68f5 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -309,12 +309,20 @@ endif(ENABLE_PERFORMANCE_COUNTERS)

@@ -1,7 +1,7 @@
 channels:
   # only used for README generation, see recipe/conda_build_config.yaml
   targets:
-  - [ryanvolz, prerelease]
+  - [ryanvolz, main]
 github:
   user_or_org: ryanvolz
 provider:

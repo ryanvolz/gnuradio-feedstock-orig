@@ -1,17 +1,14 @@
-{% set hash = "c57004b61d8dac8958995b535a225b81d2b12a3d" %}
-{% set version = "3.8.0.0rc2" %}
+{% set version = "3.8.0.0" %}
 
 package:
   name: gnuradio
-  # 9 prefix in local version needed as hack to ensure proper ordering (after 0)
-  version: {{ version }}+9g{{ hash[:7] }}
+  version: {{ version }}
 
 source:
-  git_url: https://github.com/gnuradio/gnuradio.git
-  git_rev: {{ hash }}
+  url: https://github.com/gnuradio/gnuradio/releases/download/v{{ version }}/gnuradio-{{ version }}.tar.gz
+  sha256: 3a9c90111f22f2f6f30450731dc671ad28ce824fc1a7bc8ea0783da9b95a7092
   patches:
-    - 0001-Change-MP-and-bigobj-to-compile_options.patch
-    - 0001-Use-raw-strings-for-paths.patch
+    - 0001-Use-raw-strings-for-paths-substituted-directly-into-.patch
     - 0001-Don-t-use-hard-coded-path-constants.patch
 
 build:
@@ -59,7 +56,7 @@ requirements:
     - python
     - six
     - swig
-    - volk >=1.4
+    - volk >=2
   # documentation
     #- doxygen
     #- graphviz

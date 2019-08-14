@@ -122,6 +122,7 @@ test:
   commands:
     - conda inspect linkages -p $PREFIX gnuradio  # [not win]
     - conda inspect objects -p $PREFIX gnuradio  # [osx]
+    - python -c 'import faulthandler; faulthandler.enable(); import gnuradio.analog._analog_swig'  # [osx and py3k]
 
   imports:
     - gnuradio.analog

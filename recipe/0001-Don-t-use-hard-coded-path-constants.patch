@@ -1,4 +1,4 @@
-From d213a438da1cae9870737d458039eec0a558fc1c Mon Sep 17 00:00:00 2001
+From 0617c89d215c11d11e43c75dca009e64029dc984 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
 Date: Mon, 5 Aug 2019 11:06:13 -0400
 Subject: [PATCH] Don't use hard-coded path constants.
@@ -64,15 +64,15 @@ index 5aa90a5e1..b5086042c 100644
  
  #########################################################################
 diff --git a/gnuradio-runtime/lib/constants.cc.in b/gnuradio-runtime/lib/constants.cc.in
-index b368e9dc3..970c73996 100644
+index b368e9dc3..7588c1d2d 100644
 --- a/gnuradio-runtime/lib/constants.cc.in
 +++ b/gnuradio-runtime/lib/constants.cc.in
 @@ -26,6 +26,8 @@
  
  #include <stdlib.h>
  #include <gnuradio/constants.h>
-+#include <boost/dll/config.hpp>
 +#include <boost/dll/runtime_symbol_info.hpp>
++#include <boost/filesystem/path.hpp>
  
  namespace gr {
  
@@ -81,9 +81,9 @@ index b368e9dc3..970c73996 100644
      if (prefix != NULL) return prefix;
  
 -    return "@prefix@";
-+    boost::dll::fs::path prefix_rel_lib = "@prefix_relative_to_lib@";
-+    boost::dll::fs::path gr_runtime_lib_path = boost::dll::this_line_location();
-+    boost::dll::fs::path prefix_path =
++    boost::filesystem::path prefix_rel_lib = "@prefix_relative_to_lib@";
++    boost::filesystem::path gr_runtime_lib_path = boost::dll::this_line_location();
++    boost::filesystem::path prefix_path =
 +        gr_runtime_lib_path.remove_filename() / prefix_rel_lib;
 +    return prefix_path.lexically_normal().string();
    }
@@ -99,10 +99,10 @@ index b368e9dc3..970c73996 100644
 -    }
 -
 -    return "@SYSCONFDIR@";
-+    boost::dll::fs::path sysconfdir_rel_prefix =
++    boost::filesystem::path sysconfdir_rel_prefix =
 +        "@SYSCONFDIR_relative_to_prefix@";
-+    boost::dll::fs::path prefix_path = prefix();
-+    boost::dll::fs::path sysconfdir_path = prefix_path / sysconfdir_rel_prefix;
++    boost::filesystem::path prefix_path = prefix();
++    boost::filesystem::path sysconfdir_path = prefix_path / sysconfdir_rel_prefix;
 +
 +    return sysconfdir_path.lexically_normal().string();
    }
@@ -118,10 +118,10 @@ index b368e9dc3..970c73996 100644
 -    }
 -
 -    return "@GR_PREFSDIR@";
-+    boost::dll::fs::path prefsdir_rel_prefix =
++    boost::filesystem::path prefsdir_rel_prefix =
 +        "@GR_PREFSDIR_relative_to_prefix@";
-+    boost::dll::fs::path prefix_path = prefix();
-+    boost::dll::fs::path prefsdir_path = prefix_path / prefsdir_rel_prefix;
++    boost::filesystem::path prefix_path = prefix();
++    boost::filesystem::path prefsdir_path = prefix_path / prefsdir_rel_prefix;
 +
 +    return prefsdir_path.lexically_normal().string();
    }

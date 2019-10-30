@@ -5,7 +5,7 @@ boost_cpp:
 c_compiler:
 - clang
 c_compiler_version:
-- '4'
+- '9'
 channel_sources:
 - conda-forge,ryanvolz,pkgw-forge,defaults
 channel_targets:
@@ -13,7 +13,9 @@ channel_targets:
 cxx_compiler:
 - clangxx
 cxx_compiler_version:
-- '4'
+- '9'
+fftw:
+- '3'
 gsl:
 - '2.5'
 macos_machine:
@@ -25,6 +27,8 @@ numpy:
 pin_run_as_build:
   boost-cpp:
     max_pin: x.x.x
+  fftw:
+    max_pin: x
   python:
     min_pin: x.x
     max_pin: x.x

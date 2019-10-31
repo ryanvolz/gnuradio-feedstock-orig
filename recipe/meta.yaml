@@ -120,7 +120,8 @@ requirements:
 
 test:
   commands:
-    - python -c 'import faulthandler; faulthandler.enable(); import gnuradio.analog._analog_swig'  # [osx and py3k]
+    - python -c "import faulthandler, os, sys; faulthandler.enable(); sys.path.insert(0, \"$CONDA_PREFIX/lib/python3.7/site-packages/gnuradio.analog\"); import _analog_swig"  # [osx]
+    - gnuradio-config-info -v --prefix --sysconfdir --prefsdir --userprefsdir --prefs --builddate --enabled-components --cc --cxx --cflags
 
   imports:
     - gnuradio.analog  # [not osx]

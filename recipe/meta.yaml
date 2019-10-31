@@ -123,7 +123,7 @@ test:
     - sqlite
 
   commands:
-    - python -c "import faulthandler, os, sys; faulthandler.enable(); sys.path.insert(0, \"$CONDA_PREFIX/lib/python3.7/site-packages/gnuradio.analog\"); import _analog_swig"  # [osx]
+    - python -c "import faulthandler, os, sys; faulthandler.enable(); sys.path.insert(0, \"$CONDA_PREFIX/lib/python3.7/site-packages/gnuradio/analog\"); import _analog_swig"  # [osx]
     - gnuradio-config-info -v --prefix --sysconfdir --prefsdir --userprefsdir --prefs --builddate --enabled-components --cc --cxx --cflags
     # run a few example scripts to show that at least some things work
     - python "$CONDA_PREFIX/share/gnuradio/examples/volk_benchmark/volk_math.py" -L test -N 1e6 -I 3 --all  # [not win]

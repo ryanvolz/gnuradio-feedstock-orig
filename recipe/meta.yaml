@@ -127,7 +127,7 @@ test:
     - gnuradio-config-info -v --prefix --sysconfdir --prefsdir --userprefsdir --prefs --builddate --enabled-components --cc --cxx --cflags
     # run a few example scripts to show that at least some things work
     - python "$CONDA_PREFIX/share/gnuradio/examples/volk_benchmark/volk_math.py" -L test -N 1e6 -I 3 --all  # [not win]
-    - python "$CONDA_PREFIX/Library/share/gnuradio/examples/volk_benchmark/volk_math.py" -L test -N 1e6 -I 3 --all  # [win]
+    - python "%CONDA_PREFIX%/Library/share/gnuradio/examples/volk_benchmark/volk_math.py" -L test -N 1e6 -I 3 --all  # [win]
     - grcc "$CONDA_PREFIX/share/gnuradio/examples/metadata/file_metadata_vector_sink.grc"  # [linux]
     - python file_metadata_vector_sink.py  # [linux]
 

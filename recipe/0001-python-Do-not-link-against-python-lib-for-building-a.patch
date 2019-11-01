@@ -1,4 +1,4 @@
-From b5cc8514d90062afec77414d8f4202856b40a4b8 Mon Sep 17 00:00:00 2001
+From 127a40cb6d64511960e2e95bcb93993d448184d1 Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
 Date: Thu, 31 Oct 2019 17:38:49 -0400
 Subject: [PATCH] python: Do not link against python lib for building an
@@ -10,39 +10,64 @@ Instead of linking against the python library, it is proper to not link
 against the library and, for OSX builds, add linker options for
 "-undefined" and "dynamic_lookup". This is precisely what the CMake
 FindPython module does for linking against the Python::Module target.
+
+See https://blog.tim-smith.us/2015/09/python-extension-modules-os-x
 ---
- cmake/Modules/GrPython.cmake | 19 +++++++------------
- 1 file changed, 7 insertions(+), 12 deletions(-)
+ cmake/Modules/GrPython.cmake | 29 +++++++++++++++++++++++++++++
+ cmake/Modules/GrSwig.cmake   |  2 +-
+ 2 files changed, 30 insertions(+), 1 deletion(-)
 
 diff --git a/cmake/Modules/GrPython.cmake b/cmake/Modules/GrPython.cmake
-index ff8264a9b..9a868d3a1 100644
+index ff8264a9b..54eee8be8 100644
 --- a/cmake/Modules/GrPython.cmake
 +++ b/cmake/Modules/GrPython.cmake
-@@ -54,19 +54,14 @@ set(PYTHON_EXECUTABLE ${PYTHON_EXECUTABLE} CACHE FILEPATH "python interpreter")
- set(QA_PYTHON_EXECUTABLE ${QA_PYTHON_EXECUTABLE} CACHE FILEPATH "python interpreter for QA tests")
+@@ -68,6 +68,35 @@ else()
+       )
+ endif()
  
- add_library(Python::Python INTERFACE IMPORTED)
--# Need to handle special cases where both debug and release
--# libraries are available (in form of debug;A;optimized;B) in PYTHON_LIBRARIES
--if(PYTHON_LIBRARY_DEBUG AND PYTHON_LIBRARY_RELEASE)
--    set_target_properties(Python::Python PROPERTIES
--      INTERFACE_INCLUDE_DIRECTORIES "${PYTHON_INCLUDE_DIRS}"
--      INTERFACE_LINK_LIBRARIES "$<$<NOT:$<CONFIG:Debug>>:${PYTHON_LIBRARY_RELEASE}>;$<$<CONFIG:Debug>:${PYTHON_LIBRARY_DEBUG}>"
--      )
--else()
-+set_target_properties(Python::Python PROPERTIES
-+    INTERFACE_INCLUDE_DIRECTORIES "${PYTHON_INCLUDE_DIRS}"
-+)
-+if(APPLE)
-     set_target_properties(Python::Python PROPERTIES
--      INTERFACE_INCLUDE_DIRECTORIES "${PYTHON_INCLUDE_DIRS}"
--      INTERFACE_LINK_LIBRARIES "${PYTHON_LIBRARIES}"
--      )
--endif()
-+        INTERFACE_LINK_OPTIONS "LINKER:-undefined,dynamic_lookup"
++# separarate target when linking to make an extension module, which should not
++# link explicitly to the python library on Unix-like platforms
++add_library(Python::Module INTERFACE IMPORTED)
++if(WIN32)
++    # identical to Python::Python, cannot be an alias because Python::Python is imported
++    # Need to handle special cases where both debug and release
++    # libraries are available (in form of debug;A;optimized;B) in PYTHON_LIBRARIES
++    if(PYTHON_LIBRARY_DEBUG AND PYTHON_LIBRARY_RELEASE)
++        set_target_properties(Python::Module PROPERTIES
++          INTERFACE_INCLUDE_DIRECTORIES "${PYTHON_INCLUDE_DIRS}"
++          INTERFACE_LINK_LIBRARIES "$<$<NOT:$<CONFIG:Debug>>:${PYTHON_LIBRARY_RELEASE}>;$<$<CONFIG:Debug>:${PYTHON_LIBRARY_DEBUG}>"
++        )
++    else()
++        set_target_properties(Python::Module PROPERTIES
++          INTERFACE_INCLUDE_DIRECTORIES "${PYTHON_INCLUDE_DIRS}"
++          INTERFACE_LINK_LIBRARIES "${PYTHON_LIBRARIES}"
++        )
++    endif()
++else()
++    set_target_properties(Python::Module PROPERTIES
++        INTERFACE_INCLUDE_DIRECTORIES "${PYTHON_INCLUDE_DIRS}"
 +    )
-+endif(APPLE)
++    if(APPLE)
++        set_target_properties(Python::Module PROPERTIES
++            INTERFACE_LINK_OPTIONS "LINKER:-undefined,dynamic_lookup"
++        )
++    endif(APPLE)
++endif(WIN32)
++
  
+ ########################################################################
+ # Check for the existence of a python module:
+diff --git a/cmake/Modules/GrSwig.cmake b/cmake/Modules/GrSwig.cmake
+index 39585ac4b..4118728cc 100644
+--- a/cmake/Modules/GrSwig.cmake
++++ b/cmake/Modules/GrSwig.cmake
+@@ -139,7 +139,7 @@ macro(GR_SWIG_MAKE name)
+       )
+     target_include_directories(${name} PUBLIC ${GR_SWIG_INCLUDE_DIRS})
+     set_property(TARGET ${name} PROPERTY SWIG_DEPENDS ${GR_SWIG_TARGET_DEPS})
+-    target_link_libraries(${name} Python::Python ${GR_SWIG_LIBRARIES})
++    target_link_libraries(${name} Python::Module ${GR_SWIG_LIBRARIES})
+ endmacro(GR_SWIG_MAKE)
  
  ########################################################################
 -- 

@@ -1,4 +1,4 @@
-From d873fc9d6c40e9d41f361bf061b168dc302fed45 Mon Sep 17 00:00:00 2001
+From 131503f51ed076529bddf8af113516c9975701cd Mon Sep 17 00:00:00 2001
 From: Ryan Volz <rvolz@mit.edu>
 Date: Thu, 31 Oct 2019 17:38:49 -0400
 Subject: [PATCH] python: Do not link against python lib for building an
@@ -15,8 +15,8 @@ See https://blog.tim-smith.us/2015/09/python-extension-modules-os-x
 ---
  cmake/Modules/GrPython.cmake | 29 +++++++++++++++++++++++++++++
  cmake/Modules/GrSwig.cmake   |  2 +-
- gr-qtgui/lib/CMakeLists.txt  |  2 +-
- 3 files changed, 31 insertions(+), 2 deletions(-)
+ gr-qtgui/lib/CMakeLists.txt  |  7 +++++--
+ 3 files changed, 35 insertions(+), 3 deletions(-)
 
 diff --git a/cmake/Modules/GrPython.cmake b/cmake/Modules/GrPython.cmake
 index ff8264a9b..54eee8be8 100644
@@ -72,14 +72,19 @@ index 39585ac4b..4118728cc 100644
  
  ########################################################################
 diff --git a/gr-qtgui/lib/CMakeLists.txt b/gr-qtgui/lib/CMakeLists.txt
-index 6ee1fb723..5834af934 100644
+index 6ee1fb723..25dd7faa3 100644
 --- a/gr-qtgui/lib/CMakeLists.txt
 +++ b/gr-qtgui/lib/CMakeLists.txt
-@@ -92,7 +92,7 @@ endif(WIN32)
+@@ -91,8 +91,11 @@ endif(WIN32)
+ 
  include(GrPython)
  if(ENABLE_PYTHON)
-   target_compile_definitions(gnuradio-qtgui PUBLIC -DENABLE_PYTHON)
+-  target_compile_definitions(gnuradio-qtgui PUBLIC -DENABLE_PYTHON)
 -  target_link_libraries(gnuradio-qtgui PUBLIC
++  # PRIVATE so users of the library can choose whether and how to link to Python
++  # (importantly, _qtgui_swig can avoid linking against Python and resolve its
++  #  own Python symbols at runtime while still using the Python-enabled qtgui)
++  target_compile_definitions(gnuradio-qtgui PRIVATE -DENABLE_PYTHON)
 +  target_link_libraries(gnuradio-qtgui PRIVATE
      Python::Python
    )

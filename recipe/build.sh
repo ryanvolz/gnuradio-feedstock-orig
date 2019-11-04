@@ -52,4 +52,3 @@ cmake -G "Ninja" \
     ..
 #    -DENABLE_GRC=ON \
 cmake --build . -- -j $((${CPU_COUNT}+2))
-cmake --build . --target install

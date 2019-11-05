@@ -1,27 +1,14 @@
 About gnuradio
 ==============
 
-Home: http://gnuradio.org/
+Home: 
 
-Package license: GPL-3.0
+Package license: 
 
 Feedstock license: BSD 3-Clause
 
-Summary: The free and open software radio ecosystem
+Summary: GNU Radio core functionality and modules
 
-GNU Radio is a free software development toolkit that provides the signal
-processing runtime and processing blocks to implement software radios using
-readily-available, low-cost external RF hardware and commodity processors.
-It is widely used in hobbyist, academic and commercial environments to
-support wireless communications research as well as to implement real-world
-radio systems.
-
-GNU Radio applications are primarily written using the Python programming
-language, while the supplied, performance-critical signal processing path
-is implemented in C++ using processor floating point extensions where
-available. Thus, the developer is able to implement real-time, high-
-throughput radio systems in a simple-to-use, rapid-application-development
-environment.
 
 
 Current build status
@@ -117,6 +104,11 @@ Current release info
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-gnuradio-green.svg)](https://anaconda.org/ryanvolz/gnuradio) | [![Conda Downloads](https://img.shields.io/conda/dn/ryanvolz/gnuradio.svg)](https://anaconda.org/ryanvolz/gnuradio) | [![Conda Version](https://img.shields.io/conda/vn/ryanvolz/gnuradio.svg)](https://anaconda.org/ryanvolz/gnuradio) | [![Conda Platforms](https://img.shields.io/conda/pn/ryanvolz/gnuradio.svg)](https://anaconda.org/ryanvolz/gnuradio) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gnuradio--core-green.svg)](https://anaconda.org/ryanvolz/gnuradio-core) | [![Conda Downloads](https://img.shields.io/conda/dn/ryanvolz/gnuradio-core.svg)](https://anaconda.org/ryanvolz/gnuradio-core) | [![Conda Version](https://img.shields.io/conda/vn/ryanvolz/gnuradio-core.svg)](https://anaconda.org/ryanvolz/gnuradio-core) | [![Conda Platforms](https://img.shields.io/conda/pn/ryanvolz/gnuradio-core.svg)](https://anaconda.org/ryanvolz/gnuradio-core) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gnuradio--grc-green.svg)](https://anaconda.org/ryanvolz/gnuradio-grc) | [![Conda Downloads](https://img.shields.io/conda/dn/ryanvolz/gnuradio-grc.svg)](https://anaconda.org/ryanvolz/gnuradio-grc) | [![Conda Version](https://img.shields.io/conda/vn/ryanvolz/gnuradio-grc.svg)](https://anaconda.org/ryanvolz/gnuradio-grc) | [![Conda Platforms](https://img.shields.io/conda/pn/ryanvolz/gnuradio-grc.svg)](https://anaconda.org/ryanvolz/gnuradio-grc) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gnuradio--qtgui-green.svg)](https://anaconda.org/ryanvolz/gnuradio-qtgui) | [![Conda Downloads](https://img.shields.io/conda/dn/ryanvolz/gnuradio-qtgui.svg)](https://anaconda.org/ryanvolz/gnuradio-qtgui) | [![Conda Version](https://img.shields.io/conda/vn/ryanvolz/gnuradio-qtgui.svg)](https://anaconda.org/ryanvolz/gnuradio-qtgui) | [![Conda Platforms](https://img.shields.io/conda/pn/ryanvolz/gnuradio-qtgui.svg)](https://anaconda.org/ryanvolz/gnuradio-qtgui) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gnuradio--uhd-green.svg)](https://anaconda.org/ryanvolz/gnuradio-uhd) | [![Conda Downloads](https://img.shields.io/conda/dn/ryanvolz/gnuradio-uhd.svg)](https://anaconda.org/ryanvolz/gnuradio-uhd) | [![Conda Version](https://img.shields.io/conda/vn/ryanvolz/gnuradio-uhd.svg)](https://anaconda.org/ryanvolz/gnuradio-uhd) | [![Conda Platforms](https://img.shields.io/conda/pn/ryanvolz/gnuradio-uhd.svg)](https://anaconda.org/ryanvolz/gnuradio-uhd) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gnuradio--zeromq-green.svg)](https://anaconda.org/ryanvolz/gnuradio-zeromq) | [![Conda Downloads](https://img.shields.io/conda/dn/ryanvolz/gnuradio-zeromq.svg)](https://anaconda.org/ryanvolz/gnuradio-zeromq) | [![Conda Version](https://img.shields.io/conda/vn/ryanvolz/gnuradio-zeromq.svg)](https://anaconda.org/ryanvolz/gnuradio-zeromq) | [![Conda Platforms](https://img.shields.io/conda/pn/ryanvolz/gnuradio-zeromq.svg)](https://anaconda.org/ryanvolz/gnuradio-zeromq) |
 
 Installing gnuradio
 ===================
@@ -127,10 +119,10 @@ Installing `gnuradio` from the `ryanvolz` channel can be achieved by adding `rya
 conda config --add channels ryanvolz
 ```
 
-Once the `ryanvolz` channel has been enabled, `gnuradio` can be installed with:
+Once the `ryanvolz` channel has been enabled, `gnuradio, gnuradio-core, gnuradio-grc, gnuradio-qtgui, gnuradio-uhd, gnuradio-zeromq` can be installed with:
 
 ```
-conda install gnuradio
+conda install gnuradio gnuradio-core gnuradio-grc gnuradio-qtgui gnuradio-uhd gnuradio-zeromq
 ```
 
 It is possible to list all of the versions of `gnuradio` available on your platform with:

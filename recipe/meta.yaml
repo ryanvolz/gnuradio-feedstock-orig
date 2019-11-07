@@ -279,7 +279,7 @@ outputs:
     requirements:
       run:
         - {{ pin_subpackage('gnuradio-core', exact=True) }}
-        - {{ pin_subpackage('gnuradio-grc', exact=True) }}
+        - {{ pin_subpackage('gnuradio-grc', exact=True) }}  # [linux]
         - {{ pin_subpackage('gnuradio-qtgui', exact=True) }}
         - {{ pin_subpackage('gnuradio-uhd', exact=True) }}
         - {{ pin_subpackage('gnuradio-zeromq', exact=True) }}

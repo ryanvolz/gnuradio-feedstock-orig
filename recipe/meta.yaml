@@ -177,7 +177,7 @@ outputs:
         - python
         - pyyaml
       run:
-        - {{ pin_subpackage('gnuradio-core', exact=True) }}
+        - {{ pin_subpackage('gnuradio-core', min_pin='x.x.x', max_pin='x.x.x') }}
         - boost-cpp
         - {{ pin_compatible('gtk3') }}
         - {{ pin_compatible('log4cpp') }}
@@ -210,7 +210,7 @@ outputs:
         - qwt
         - volk
       run:
-        - {{ pin_subpackage('gnuradio-core', exact=True) }}
+        - {{ pin_subpackage('gnuradio-core', min_pin='x.x.x', max_pin='x.x.x') }}
         - boost-cpp
         - {{ pin_compatible('log4cpp') }}
         - pyqt
@@ -237,7 +237,7 @@ outputs:
         - python
         - uhd
       run:
-        - {{ pin_subpackage('gnuradio-core', exact=True) }}
+        - {{ pin_subpackage('gnuradio-core', min_pin='x.x.x', max_pin='x.x.x') }}
         - boost-cpp
         - {{ pin_compatible('log4cpp') }}
         - python
@@ -263,7 +263,7 @@ outputs:
         - python
         - zeromq
       run:
-        - {{ pin_subpackage('gnuradio-core', exact=True) }}
+        - {{ pin_subpackage('gnuradio-core', min_pin='x.x.x', max_pin='x.x.x') }}
         - boost-cpp
         - {{ pin_compatible('log4cpp') }}
         - python

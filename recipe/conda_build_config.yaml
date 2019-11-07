@@ -1,13 +1,12 @@
-c_compiler:  # [win]
-- vs2015  # [win]
-cxx_compiler:  # [win]
-- vs2015  # [win]
-
 channel_sources:
   - conda-forge,ryanvolz,pkgw-forge,defaults
 
 channel_targets:
   - ryanvolz main
 
+# bug in 5.12.5_0
+# dependency failure between 5.12.5_1 and gtk3
+# dependency failure between 5.12.1 and pyqt
+# pin manually to most recent working version
 qt:
-- 5.9
+  - 5.9

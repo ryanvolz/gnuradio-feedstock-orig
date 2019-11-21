@@ -22,6 +22,7 @@ requirements:
     - {{ compiler('cxx') }}
     - cmake >=3.8
     - ninja
+    - pkg-config  # [not win]
    # libudev needed to link against libusb on linux
     - {{ cdt('libudev') }}  # [linux]
    # below are needed to link with Qt for qtgui
@@ -48,12 +49,17 @@ requirements:
     - click-plugins
     - fftw
     - gsl
+    # blas needed to link with gsl
+    - libblas
+    - libcblas
     - libusb >=1
     - log4cpp
     - mako
     - mpir
-    - numpy
-    - pkg-config  # [not win]
+    # we don't build against numpy C lib
+    # (only needed at runtime, except gnuradio CMake checks for it at build)
+    # specify version so pin is ignored
+    - numpy >=1.1
     - python
     - six
     - swig
@@ -105,22 +111,19 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake
         - ninja
+        - pkg-config  # [not win]
       host:
         - alsa-lib  # [linux]
         - boost-cpp
-        - click
-        - click-plugins
         - fftw
         - gsl
+        - libblas
+        - libcblas
         - libusb
         - log4cpp
-        - mako
         - mpir
-        - numpy
-        - pkg-config  # [not win]
         - portaudio  # [linux]
         - python
-        - six
         - swig
         - volk
       run:
@@ -167,15 +170,13 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake
         - ninja
+        - pkg-config  # [not win]
       host:
         - gnuradio-core
         - boost-cpp
         - gtk3
         - log4cpp
-        - lxml
-        - pygobject
         - python
-        - pyyaml
       run:
         - {{ pin_subpackage('gnuradio-core', min_pin='x.x.x', max_pin='x.x.x') }}
         - boost-cpp
@@ -200,6 +201,7 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake
         - ninja
+        - pkg-config  # [not win]
       host:
         - gnuradio-core
         - boost-cpp
@@ -230,6 +232,7 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake
         - ninja
+        - pkg-config  # [not win]
       host:
         - gnuradio-core
         - boost-cpp
@@ -255,6 +258,7 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake
         - ninja
+        - pkg-config  # [not win]
       host:
         - gnuradio-core
         - boost-cpp
@@ -285,6 +289,12 @@ outputs:
         - {{ pin_subpackage('gnuradio-zeromq', exact=True) }}
         # explicitly add python so that build string is generated correctly
         - python
+    test:
+      imports:
+        - gnuradio.gr
+        - gnuradio.qtgui
+        - gnuradio.uhd
+        - gnuradio.zeromq
     about:
       summary: 'GNU Radio core library and standard modules'
 
